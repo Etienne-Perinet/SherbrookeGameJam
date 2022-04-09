@@ -12,7 +12,6 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Shooting");
         if(Input.GetButtonDown("Fire1"))
         {
             Shoot();

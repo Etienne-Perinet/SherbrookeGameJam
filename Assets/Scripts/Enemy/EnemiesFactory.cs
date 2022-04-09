@@ -18,7 +18,6 @@ public class EnemiesFactory
         Queue<Enemy> generatedEnemies = new Queue<Enemy>();
         while(cost > 0)
         {
-            Debug.Log("Enemy count : " + enemies.Count);
             int randIndex = Random.Range(0, enemies.Count);
             int randCost = Random.Range(0, enemies[randIndex].Cost);
             Debug.Log("Rand cost " + randCost + " " + enemies[randIndex].Prefab.name);
@@ -28,12 +27,10 @@ public class EnemiesFactory
                 generatedEnemies.Enqueue(enemies[randIndex]);
                 cost -= randCost;
             }
-            Debug.Log("Cost " + cost);
         }
 
         enemiesToSpawn.Clear();
         enemiesToSpawn = generatedEnemies;
-        Debug.Log("Enemies to spawn " + enemiesToSpawn.Count);
     }
 
     public bool IsEmpty() => enemiesToSpawn.Count <= 0; 
