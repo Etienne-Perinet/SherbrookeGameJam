@@ -13,13 +13,14 @@ public abstract class Enemy : MonoBehaviour
 
     [field: SerializeField] public GameObject Prefab { get; protected set; }
 
-    public string Type { get; protected set; } 
     public int Damage { get; protected set; } 
 
     public int Cost 
     {
         get { return health * CollisionDamage * (int)speed; }
     }
+    protected HealthBar.Color enemyType;
+    protected float collisionDamage = 1f;
 
     protected virtual void Awake()
     {
@@ -59,7 +60,7 @@ public abstract class Enemy : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
     }
 
-    public string GetEnemyDamageType()
+    public HealthBar.Color GetEnemyDamageType()
     {
         return Type;
     }

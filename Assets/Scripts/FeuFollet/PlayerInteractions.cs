@@ -9,7 +9,7 @@ public class PlayerInteractions : MonoBehaviour
     private int falseHealthBar = 5;
     public Rigidbody2D rb;
 
-    private string lastEnemyColor;
+    private HealthBar.Color lastEnemyColor;
 
     private void Die() 
     {
@@ -30,27 +30,17 @@ public class PlayerInteractions : MonoBehaviour
             //     rb.AddForce(difference, ForceMode2D.Impulse);
             //     rb.isKinematic = true; 
             // }
-                       
-            switch (other.gameObject.GetComponent<Enemy>().GetEnemyDamageType())
+            Enemy enemyObject = other.gameObject.GetComponent<Enemy>();
+            HealthBar.Color enemyColor = enemyObject.GetEnemyDamageType();
+            if(!healthBar.AddColor(enemyColor, enemyObject.GetEnemyCollisionDamage()))
+                 Die();
+            else
             {
-                case "Red":
-                    healthBar.AddColor(HealthBar.Color.RED, other.gameObject.GetComponent<Enemy>().GetEnemyCollisionDamage());
-                    lastEnemyColor = "Red";Debug.Log("Last enemy damage : " + lastEnemyColor);
-                    falseHealthBar--;
-                    break;
-                case "Blue":
-                    healthBar.AddColor(HealthBar.Color.BLUE, other.gameObject.GetComponent<Enemy>().GetEnemyCollisionDamage());
-                    lastEnemyColor = "Blue"; Debug.Log("Last enemy damage : " + lastEnemyColor);
-                    falseHealthBar--;
-                    break;
-                case "Green":
-                    healthBar.AddColor(HealthBar.Color.GREEN, other.gameObject.GetComponent<Enemy>().GetEnemyCollisionDamage());
-                    lastEnemyColor = "Green";Debug.Log("Last enemy damage : " + lastEnemyColor);
-                    falseHealthBar--;
-                    break;
+                lastEnemyColor = other.gameObject.GetComponent<Enemy>().GetEnemyDamageType();
+                falseHealthBar--;
             }
         } 
-        // if(healthBar.IsDead() || falseHealthBar < 1)
-        //     Die();
+        //if(healthBar.IsDead() || falseHealthBar < 1)
+            //Die();
     }
 }
