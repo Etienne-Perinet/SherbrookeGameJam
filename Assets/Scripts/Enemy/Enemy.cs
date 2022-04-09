@@ -62,7 +62,7 @@ public abstract class Enemy : MonoBehaviour
 
     public HealthBar.Color GetEnemyDamageType()
     {
-        return Type;
+        return enemyType;
     }
 
         public float GetEnemyCollisionDamage()
