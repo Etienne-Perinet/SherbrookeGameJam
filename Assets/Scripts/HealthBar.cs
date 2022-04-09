@@ -17,18 +17,19 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Vector2[] dots;
 
     [SerializeField] private Transform vPoint;
+
+    private Vector2 DotCorrection = new Vector2(0, .36f);
  
     // Start is called before the first frame update
     void Start()
     {
-        
         dots = new Vector2[3];
         colorRadius = 20;
 
         AddColor(Color.RED, 70);
         AddColor(Color.BLUE, 15);
         AddColor(Color.GREEN, 15);
-        vPoint.position = Centroid() + new Vector2(0, .36f);
+        vPoint.position = Centroid() + DotCorrection;
     }
 
     void AddColor(Color color, float val) 
