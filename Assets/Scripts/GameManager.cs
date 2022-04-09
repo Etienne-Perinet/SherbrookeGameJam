@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     private EnemiesFactory enemyFactory;
     private float waveTimer = 0f;
-
+    [SerializeField] private string restartScene;
+    [SerializeField] private GameObject endGameOverlay;
     [SerializeField] private List<Enemy> enemies;
 
     [SerializeField] private GameObject player;
@@ -23,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     void Start() 
     {
+        if(endGameOverlay == null)
+            endGameOverlay = GameObject.Find("Overlay");
         enemyFactory.GenerateEnemies(50);
     }
 
@@ -33,7 +37,8 @@ public class GameManager : MonoBehaviour
         else if(waveTimer >= 10)
         {
             waveTimer = 0;
-            enemyFactory.GenerateEnemies(50);        }
+            enemyFactory.GenerateEnemies(50);        
+        }
     }
 
     void FixedUpdate()
@@ -51,5 +56,15 @@ public class GameManager : MonoBehaviour
         newPos.y = player.transform.position.y + (radius * Mathf.Sin(angle));
         newPos.x = player.transform.position.x + (radius * Mathf.Cos(angle));
         return newPos;
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene(restartScene);
+    }
+
+    public void EndGame()
+    {
+        endGameOverlay.SetActive(true);
     }
 }

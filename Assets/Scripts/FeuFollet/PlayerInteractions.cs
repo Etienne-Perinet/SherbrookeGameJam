@@ -50,7 +50,7 @@ public class PlayerInteractions : MonoBehaviour
                     break;
             }
         } 
-        if(healthBar.IsDead() || falseHealthBar < 1)
-            Die();
+        // if(healthBar.IsDead() || falseHealthBar < 1)
+        //     Die();
     }
 }
