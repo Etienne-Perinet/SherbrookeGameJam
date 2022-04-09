@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7212737278092581266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7212737278092581268}
+  - component: {fileID: 7212737278092581269}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7212737278092581268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7212737278092581266}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.82, y: -7.5175962, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7212737278092581269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7212737278092581266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01e5b3e1397220d45b82fe610a1c319e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restartScene: PlayerHealthBarTest
+  endGameOverlay: {fileID: 0}
+  redEnemy: {fileID: 1788079836208447225, guid: 72895976545aaad469c62cf95f1f5ef2, type: 3}
+  greenEnemy: {fileID: 1788079836208447225, guid: e4c9498cc2b48184dbbe3ca91948d878, type: 3}
+  blueEnemy: {fileID: 1788079836208447225, guid: 2abbaf7ef89175d4db64180980f537b0, type: 3}
+  redEnemies: 10
+  greenEnemies: 0
+  blueEnemies: 0
+  player: {fileID: 0}
