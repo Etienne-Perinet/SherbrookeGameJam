@@ -5,11 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
-    private EnemiesFactory factory = new EnemiesFactory();
+    private EnemiesFactory enemyFactory;
+    [SerializeField] private List<Enemy> enemies;
 
-    public GameObject redEnemy;
-    public GameObject greenEnemy;
-    public GameObject blueEnemy;
     public int redEnemies;
     public int greenEnemies;
     public int blueEnemies;
@@ -20,37 +18,31 @@ public class GameManager : MonoBehaviour
     void Awake() 
     {
         if (instance == null)
-        {
             instance = this;
-        }
+
+        player = GameObject.Find("FeuFollet");
+        enemyFactory = new EnemiesFactory(enemies);
     }
 
     void Start() 
     {
-        player = GameObject.Find("FeuFollet");
-        NextWave();
+        enemyFactory.GenerateEnemies(50);
     }
 
-    void NextWave() 
+    void Update() 
     {
-        
-        //Instantiate(redEnemy, randomPos(), Quaternion.identity);
-        GenerateWave(redEnemies, greenEnemies, blueEnemies);
+        Debug.Log("Is it empty " + enemyFactory.IsEmpty());
+        if(!enemyFactory.IsEmpty())
+        {
+            Debug.Log("Not empty");
+            SpawnEnemy();
+        }
     }
 
-    public void GenerateWave(int r, int g, int b) {
-        for (int i = 0; i < r; i++)
-            Instantiate(redEnemy, randomPos(), Quaternion.identity);
+    void SpawnEnemy() => Instantiate(enemyFactory.NextEnemy().Prefab, RandomPos(), Quaternion.identity);
 
-        for (int i = 0; i < g; i++)
-            Instantiate(greenEnemy, randomPos(), Quaternion.identity);
-
-        for (int i = 0; i < b; i++)
-            Instantiate(blueEnemy, randomPos(), Quaternion.identity);
-    }
-
-    protected Vector3 randomPos() {
-        //Debug.Log("target : " + player.name);
+    protected Vector3 RandomPos() 
+    {
         float radius = Random.Range(15f, 25f);
         float angle = Random.Range(0f, 360f);
         Vector3 newPos = new Vector3();

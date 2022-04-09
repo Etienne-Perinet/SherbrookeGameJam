@@ -5,30 +5,27 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Enemy : MonoBehaviour
 {
-    // [SerializeField] private float speed = 2f;
-    // [SerializeField] protected GameObject prefab;
-    // protected int health = 1;
-    // protected Transform target;
-    // public string Type { get; protected set; } 
-    // public int Damage { get; protected set; } 
-
-    [SerializeField] private float speed =2;
-    public GameObject deathAnimation;
-
-    [SerializeField]
+    [SerializeField] private float speed = 2f;
+    protected int health = 1;
     protected Transform target;
-    [SerializeField]
-    public int health = 1;
+    public GameObject deathAnimation;
+    [field: SerializeField] public int CollisionDamage { get; protected set; }
 
-    protected string enemyType;
-    protected float collisionDamage = 1f;
+    [field: SerializeField] public GameObject Prefab { get; protected set; }
+
+    public string Type { get; protected set; } 
+    public int Damage { get; protected set; } 
+
+    public int Cost 
+    {
+        get { return health * CollisionDamage * (int)speed; }
+    }
 
     protected virtual void Awake()
     {
         Debug.Log("Starting enemy spawn");
         
         target = GameObject.Find("FeuFollet").GetComponent<Transform>();
-        
     }
 
     protected virtual void Die() 
@@ -64,12 +61,12 @@ public abstract class Enemy : MonoBehaviour
 
     public string GetEnemyDamageType()
     {
-        return enemyType;
+        return Type;
     }
 
         public float GetEnemyCollisionDamage()
     {
-        return collisionDamage;
+        return CollisionDamage;
     }
 
     protected virtual void Update()

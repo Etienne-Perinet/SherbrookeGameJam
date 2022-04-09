@@ -173,9 +173,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  target: {fileID: 0}
-  health: 1
-  prefab: {fileID: 1788079836208447225}
+  deathAnimation: {fileID: 0}
+  <CollisionDamage>k__BackingField: 6
+  <Prefab>k__BackingField: {fileID: 1788079836208447225}
 --- !u!1 &1788079836436796884
 GameObject:
   m_ObjectHideFlags: 0

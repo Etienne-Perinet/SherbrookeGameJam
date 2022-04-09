@@ -6,6 +6,6 @@ public class GreenEnemy : Enemy
 {
     void Start()
     {
-        enemyType = "Green";
+        Type = "Green";
     }
 }
