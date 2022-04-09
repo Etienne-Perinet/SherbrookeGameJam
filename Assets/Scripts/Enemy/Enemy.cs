@@ -12,7 +12,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     public int health = 1;
 
-    protected string enemyType;
+    protected HealthBar.Color enemyType;
     protected float collisionDamage = 1f;
 
     protected virtual void Awake()
@@ -54,7 +54,7 @@ public abstract class Enemy : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
     }
 
-    public string GetEnemyDamageType()
+    public HealthBar.Color GetEnemyDamageType()
     {
         return enemyType;
     }
