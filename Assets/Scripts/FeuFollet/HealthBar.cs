@@ -4,120 +4,52 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-/**
- * function positionnement pour les différente couleurs: 
- *   (pour val: compteur)
- * Green:   x = -val, y = val
- * Red:     x = val, y = val
- * Blue:    x = 0, y = -val
- */
-public class HealthBar : MonoBehaviour
+public class HealthBar : MonoBehaviour 
 {
-    public enum Color { RED, GREEN, BLUE };
-    [SerializeField] private int colorRadius;
+    public enum Color { RED, GREEN, BLUE, LIGHT };
+
+    [SerializeField] private int range;
+
+    [SerializeField] private Vector2 ratio;
+    [SerializeField] private float ratioYAxisTop;
+    [SerializeField] private float ratioYAxisBottom;
+
     [SerializeField] private Vector2[] dots;
 
-    [SerializeField] private Transform vPoint;
+    [SerializeField] private Transform cursor;
 
-    private Vector2 dotCorrection = new Vector2(0, .36f);
+    [SerializeField] private Vector2 initialPos;
 
-    private Vector2 ratio;
-    private float maxContainerSize;
+    [SerializeField] private Vector2[] vertexs;
 
-    private Vector2 currentPos;
-
- 
-    // Start is called before the first frame update
     void Start()
     {
         dots = new Vector2[3];
+        
 
+        ratio = GetComponent<SpriteRenderer>().bounds.size;
+        ratio.x = ratio.x / 2;
+        ratio.y = ratio.y / 2;
 
+        vertexs = new Vector2[] {  
+            new Vector2(ratio.x, -ratio.y),
+            new Vector2(0, ratio.y),
+            new Vector2(-ratio.x, -ratio.y),
+        };
 
-        Vector3 container = GetComponent<SpriteRenderer>().bounds.extents;
-        ratio = new Vector2(container.x, container.y);
-        maxContainerSize = colorRadius / container.y;
+        initialPos = new Vector2(0, -ratio.y/3);
 
-        SubColor(Color.RED, 1);
+        ratioYAxisTop = ratio.y/2 - initialPos.y;
+        ratioYAxisBottom = ratio.y - ratioYAxisTop;
     }
 
-    public void AddColor(Color color, float val) 
-    {
-        val /= colorRadius;
-        switch (color) 
-        {
-            case Color.GREEN:
-                dots[(int)color].x -= val;
-                dots[(int)color].y += val;
-                break;
-            case Color.RED:
-                dots[(int)color].x += val;
-                dots[(int)color].y += val;
-                break;
-            case Color.BLUE:
-                dots[(int)color].y -= val;
-                break;
-        }
-
-        Vector2 newPos = Centroid() * ratio + dotCorrection;
-        currentPos = newPos;
-        if (IsDead(newPos)) {
-            throw new System.Exception("yooo t mort dude");
-        }
-
-        vPoint.position = newPos;
-    }
-
-    public void SubColor(Color color, float val) 
-    {
-        val /= colorRadius;
-        switch (color) 
-        {
-            case Color.GREEN:
-                if (dots[(int)color] != new Vector2()) {
-                    dots[(int)color].x += val;
-                    dots[(int)color].y -= val;
-                }
-                
-                break;
-            case Color.RED:
-                if (dots[(int)color] != new Vector2()) {
-                    dots[(int)color].x -= val;
-                    dots[(int)color].y += val;
-                }
-
-                break;
-            case Color.BLUE:
-                if (dots[(int)color] != new Vector2()) {
-                    dots[(int)color].y += val;
-                }
-
-                break;
-        }
-
-        Vector2 newPos = Centroid() * ratio + dotCorrection;
-        vPoint.position = newPos;
-    }
-
-    bool IsDead(Vector2 pos) {
-        pos -= dotCorrection;
-        return pos.x >= maxContainerSize || pos.x <= -maxContainerSize 
-            || pos.y >= maxContainerSize || pos.y <= -maxContainerSize;
-    }
-
-    public bool IsDead()
-    {
-        currentPos -=dotCorrection;
-        return currentPos.x >= maxContainerSize || currentPos.x <= -maxContainerSize 
-            || currentPos.y >= maxContainerSize || currentPos.y <= -maxContainerSize;
-    }
-
-    Vector2 Centroid() 
+    private Vector2 Centroid() 
     {
         float count = 0, totalX = 0, totalY = 0;
         foreach (Vector2 d in dots) 
         {
-            if (d != new Vector2()) {
+            if (d != new Vector2()) 
+            {
                 count++;
                 totalX += d.x;
                 totalY += d.y;
@@ -125,13 +57,56 @@ public class HealthBar : MonoBehaviour
                 
         }
   
-        return  count == 0 ? new Vector2() : new Vector2(totalX / count, totalY / count);
+        return  count == 0 
+            ? new Vector2()
+            : new Vector2(totalX / count, totalY / count);
     }
 
 
-    // Update is called once per frame
-    void Update()
+    private float Sign(Vector2 v1, Vector2 v2, Vector2 v3) {
+        return (v1.x - v3.x) * (v2.y - v3.y) - (v2.x - v3.x) * (v1.y - v3.y);
+    }
+
+    private bool IsPointInTriangle(Vector2 point) {
+        float d1, d2, d3;
+        bool hasNeg, hasPos;
+
+        d1 = Sign(point, vertexs[0], vertexs[1]);
+        d2 = Sign(point, vertexs[1], vertexs[2]);
+        d3 = Sign(point, vertexs[2], vertexs[0]);
+
+        hasNeg = (d1 < 0) || (d2 < 0) || (d3 < 0);
+        hasPos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+
+        return !(hasNeg && hasPos);
+    }
+
+    public bool AddColor(Color color, float val) 
     {
-        
+        val /= range;
+        switch (color) 
+        {
+            case Color.GREEN:
+                dots[(int)color].y += (val * ratioYAxisTop * 1.5f);
+                break;
+            case Color.RED:
+                dots[(int)color].x += val * ratio.x;
+                dots[(int)color].y -= (val * ratioYAxisBottom * 4);
+                break;
+            case Color.BLUE:
+                dots[(int)color].x -= val * ratio.x;
+                dots[(int)color].y -= (val * ratioYAxisBottom * 4);
+                break;
+        }
+
+        Vector2 newPos = Centroid();
+        if (!IsPointInTriangle(newPos + initialPos)) 
+        {
+            return false;
+
+        }
+
+        cursor.position = newPos + initialPos;
+        return true;
     }
 }
