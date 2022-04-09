@@ -4,30 +4,46 @@ using UnityEngine;
 
 public class EnemiesFactory : MonoBehaviour
 {
-
+    private Queue<Enemy> enemiesToSpawn;
     private List<Enemy> enemies;
-    // Start is called before the first frame update
-    void Start()
+
+    public EnemiesFactory(List<Enemy> enemiesOptions) 
     {
-        enemies = new List<Enemy>();
+        enemies = enemiesOptions;
+        enemiesToSpawn = new Queue<Enemy>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GenerateEnemies(int cost)
     {
-        
+        Queue<Enemy> generatedEnemies = new Queue<Enemy>();
+        while(cost > 0)
+        {
+            int randIndex = Random.Range(0, enemies.Count);
+            int randCost = Random.Range(0, enemies[randIndex].Cost);
+            Debug.Log("Rand cost " + randCost + " " + enemies[randIndex].Prefab.name);
+
+            if(cost - randCost >= 0)
+            {
+                generatedEnemies.Enqueue(enemies[randIndex]);
+                cost -= randCost;
+            }
+            Debug.Log("Cost " + cost);
+        }
+
+        enemiesToSpawn.Clear();
+        enemiesToSpawn = generatedEnemies;
+        Debug.Log("Enemies to spawn " + enemiesToSpawn.Count);
     }
 
-    public void GenerateWave(int r, int g, int b) {
-        for (int i = 0; i < r; i++)
-            enemies.Add(new RedEnemy());
+    public bool IsEmpty() => enemiesToSpawn.Count <= 0; 
 
-        for (int i = 0; i < g; i++)
-            enemies.Add(new GreenEnemy());
+    public Enemy NextEnemy() 
+    {
+        return enemiesToSpawn.Dequeue();
 
-        for (int i = 0; i < b; i++)
-            enemies.Add(new BlueEnemy());
     }
+
+
 
 
 }
