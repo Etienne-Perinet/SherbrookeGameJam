@@ -39,7 +39,7 @@ public class PlayerInteractions : MonoBehaviour
             else
             {
                 lastEnemyColor = other.gameObject.GetComponent<Enemy>().GetEnemyDamageType();
-                falseHealthBar--;
+                //falseHealthBar--;
             }
         } 
         //if(healthBar.IsDead() || falseHealthBar < 1)

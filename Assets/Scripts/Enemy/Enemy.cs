@@ -6,7 +6,8 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] private float speed = 2f;
-    protected int health = 1;
+    [SerializeField] protected int health = 1;
+    
     protected Transform target;
     public GameObject deathAnimation;
     [field: SerializeField] public int CollisionDamage { get; protected set; }

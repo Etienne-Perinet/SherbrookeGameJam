@@ -173,8 +173,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  health: 4
   deathAnimation: {fileID: 0}
-  <CollisionDamage>k__BackingField: 4
+  <CollisionDamage>k__BackingField: 3
   <Prefab>k__BackingField: {fileID: 1788079836208447225}
 --- !u!1 &1788079836436796884
 GameObject:
