@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -19,12 +20,22 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Transform vPoint;
 
     private Vector2 DotCorrection = new Vector2(0, .36f);
+
+    private Vector2 ratio;
+    private float maxContainerSize;
+
  
     // Start is called before the first frame update
     void Start()
     {
         dots = new Vector2[3];
         colorRadius = 20;
+
+        Vector3 container = GetComponent<SpriteRenderer>().bounds.extents;
+        ratio = new Vector2(container.x, container.y);
+        maxContainerSize = colorRadius / container.y;
+
+        AddColor(Color.RED, 20);
     }
 
     void AddColor(Color color, float val) 
@@ -45,7 +56,12 @@ public class HealthBar : MonoBehaviour
                 break;
         }
 
-        vPoint.position = Centroid() + DotCorrection;
+        Vector2 newPos = Centroid() * ratio + DotCorrection;
+        if (IsDead(newPos)) {
+            throw new System.Exception("yooo t mort dude");
+        }
+
+        vPoint.position = newPos;
     }
 
     void SubColor(Color color, float val) 
@@ -53,15 +69,23 @@ public class HealthBar : MonoBehaviour
         AddColor(color, -val);
     }
 
+    bool IsDead(Vector2 pos) {
+        pos -= DotCorrection;
+        return pos.x >= maxContainerSize || pos.x <= -maxContainerSize 
+            || pos.y >= maxContainerSize || pos.y <= -maxContainerSize;
+    }
 
     Vector2 Centroid() 
     {
         float count = 0, totalX = 0, totalY = 0;
         foreach (Vector2 d in dots) 
         {
+            if (d != new Vector2()) {
                 count++;
                 totalX += d.x;
                 totalY += d.y;
+            }
+                
         }
   
         return  count == 0 ? new Vector2() : new Vector2(totalX / count, totalY / count);
