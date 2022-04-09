@@ -11,7 +11,8 @@ public class PlayerInteractions : MonoBehaviour
     {
     }
     private void OnCollisionEnter2D(Collision2D other) 
-    {
-        HealthBar--;
+    {        
+        if(HealthBar < 1)
+            Destroy(gameObject);
     }
 }
