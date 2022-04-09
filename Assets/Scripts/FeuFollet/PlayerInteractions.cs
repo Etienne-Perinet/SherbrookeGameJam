@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerInteractions : MonoBehaviour
 {
-
     [SerializeField]
     private HealthBar healthBar;
     private int falseHealthBar = 5;
@@ -17,7 +16,6 @@ public class PlayerInteractions : MonoBehaviour
         gameObject.SetActive(false);   
         FindObjectOfType<GameManager>().EndGame();
     }
-
     private void OnCollisionEnter2D(Collision2D other) 
     {   
         if(other.gameObject.tag == "Enemy")

@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] private float speed =2;
-    public GameObject deathAnimation;
-
-    [SerializeField]
+    [SerializeField] private float speed = 2f;
+    protected int health = 1;
     protected Transform target;
-    [SerializeField]
-    public int health = 1;
+    public GameObject deathAnimation;
+    [field: SerializeField] public int CollisionDamage { get; protected set; }
 
+    [field: SerializeField] public GameObject Prefab { get; protected set; }
+
+    public int Damage { get; protected set; } 
+
+    public int Cost 
+    {
+        get { return health * CollisionDamage * (int)speed; }
+    }
     protected HealthBar.Color enemyType;
     protected float collisionDamage = 1f;
 
@@ -20,7 +27,6 @@ public abstract class Enemy : MonoBehaviour
         Debug.Log("Starting enemy spawn");
         
         target = GameObject.Find("FeuFollet").GetComponent<Transform>();
-        
     }
 
     protected virtual void Die() 
@@ -34,9 +40,8 @@ public abstract class Enemy : MonoBehaviour
     {
         Debug.Log("Collision other : " + other.gameObject.tag);
         if(other.gameObject.CompareTag("PlayerBullet"))
-        {
             health--;
-        }else if(other.gameObject.CompareTag("Player"))
+        else if(other.gameObject.CompareTag("Player"))
         {
             if(deathAnimation != null)
             {
@@ -50,7 +55,8 @@ public abstract class Enemy : MonoBehaviour
             Die();
     }
 
-    protected virtual void Move(float _speed) {
+    protected virtual void Move(float _speed) 
+    {
         transform.position = Vector2.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
     }
 
@@ -61,7 +67,7 @@ public abstract class Enemy : MonoBehaviour
 
         public float GetEnemyCollisionDamage()
     {
-        return collisionDamage;
+        return CollisionDamage;
     }
 
     protected virtual void Update()
