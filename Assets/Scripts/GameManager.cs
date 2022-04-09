@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
         player = GameObject.Find("FeuFollet");
         enemyFactory = new EnemiesFactory(enemies);
+        Debug.Log("Awake");
     }
 
     void Start() 
