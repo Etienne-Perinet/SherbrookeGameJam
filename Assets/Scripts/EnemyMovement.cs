@@ -2,18 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public abstract class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
     private Transform target;
 
-    void Start()
+    protected virtual void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    void Update()
+    protected virtual void Move(float _speed) {
+        transform.position = Vector2.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
+    }
+
+    protected virtual void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        Move(speed);
     }
 }
