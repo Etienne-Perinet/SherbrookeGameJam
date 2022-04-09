@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1788079836208447227}
   - component: {fileID: 1788079836208447231}
   - component: {fileID: 1788079836208447168}
-  - component: {fileID: 4751154995435369912}
+  - component: {fileID: 7507134723547207384}
   m_Layer: 10
   m_Name: RedEnemy
   m_TagString: Enemy
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 24a377ccf3925934b929ddeaa60dce1d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 405b434e4b9b65d40a809c43f1d650e2, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -160,7 +160,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.62021255, y: 0.3135079}
   m_EdgeRadius: 0
---- !u!114 &4751154995435369912
+--- !u!114 &7507134723547207384
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,13 +169,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1788079836208447225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cfbf7fca4c539640bf96b81b1269b2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b858cc4bc05f0a44b8ccf1f94bccece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  health: 4
+  speed: 2
+  health: 1
   deathAnimation: {fileID: 0}
-  <CollisionDamage>k__BackingField: 3
+  <CollisionDamage>k__BackingField: 2
   <Prefab>k__BackingField: {fileID: 1788079836208447225}
 --- !u!1 &1788079836436796884
 GameObject:

@@ -32,6 +32,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Die() 
     {
+        Debug.Log("Dieee");
         Destroy(gameObject);
     }
 
@@ -39,7 +40,6 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D other) 
     {
-        Debug.Log("Collision other : " + other.gameObject.tag);
         if(other.gameObject.CompareTag("PlayerBullet"))
             health--;
         else if(other.gameObject.CompareTag("Player"))

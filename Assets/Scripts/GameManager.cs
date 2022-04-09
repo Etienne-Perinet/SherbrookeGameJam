@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
         player = GameObject.Find("FeuFollet");
         enemyFactory = new EnemiesFactory(enemies);
+        Debug.Log("Awake");
     }
 
     void Start() 
@@ -32,13 +33,17 @@ public class GameManager : MonoBehaviour
 
     void Update() 
     {
-        if(!enemyFactory.IsEmpty())
-            SpawnEnemy();
-        else if(waveTimer >= 7)
+        if(player.activeSelf)
         {
-            waveTimer = 0;
-            enemyFactory.GenerateEnemies(40);        
+            if(!enemyFactory.IsEmpty())
+            SpawnEnemy();
+            else if(waveTimer >= 7)
+            {
+                waveTimer = 0;
+                enemyFactory.GenerateEnemies(40);        
+            }
         }
+        
     }
 
     void FixedUpdate()

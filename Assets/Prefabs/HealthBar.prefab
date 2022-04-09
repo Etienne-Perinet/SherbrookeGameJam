@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7428330043547648836}
-  - component: {fileID: 7428330043547648839}
   - component: {fileID: 7428330043547648837}
+  - component: {fileID: 2941722228146060100}
   m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
@@ -33,21 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7428330043547648839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7428330043547648838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efdfbc939d73231438c8fb45754c95f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colorRadius: 20
-  dots: []
-  vPoint: {fileID: 7428330044122639470}
 --- !u!212 &7428330043547648837
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -96,9 +81,29 @@ SpriteRenderer:
   m_Size: {x: 9.42, y: 9.42}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2941722228146060100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7428330043547648838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83baabfc20433f24b89d684a79036862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
+  ratio: {x: 0, y: 0}
+  ratioYAxisTop: 0
+  ratioYAxisBottom: 0
+  dots: []
+  cursor: {fileID: 7428330044122639470}
+  initialPos: {x: 0, y: 0}
+  vertexs: []
 --- !u!1 &7428330044122639465
 GameObject:
   m_ObjectHideFlags: 0
