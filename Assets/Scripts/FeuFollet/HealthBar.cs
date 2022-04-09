@@ -20,6 +20,8 @@ public class HealthBar : MonoBehaviour
 
     [SerializeField] private Vector2 initialPos;
 
+    private Vector3 scale;
+
     [SerializeField] private Vector2[] vertexs;
 
     void Start()
@@ -28,10 +30,9 @@ public class HealthBar : MonoBehaviour
         
 
         ratio = GetComponent<SpriteRenderer>().bounds.size;
+        scale = GetComponent<SpriteRenderer>().transform.localScale;
         ratio.x = ratio.x / 2;
         ratio.y = ratio.y / 2;
-
-
         
         vertexs = new Vector2[] {  
             new Vector2(ratio.x, -ratio.y),
@@ -43,7 +44,7 @@ public class HealthBar : MonoBehaviour
 
         ratioYAxisTop = ratio.y/2 - initialPos.y;
         ratioYAxisBottom = ratio.y - ratioYAxisTop;
-        AddColor(Color.BLUE, 0f);
+        AddColor(Color.BLUE, 10f);
     }
 
     private Vector2 Centroid() 
@@ -86,7 +87,7 @@ public class HealthBar : MonoBehaviour
 
     public bool AddColor(Color color, float val) 
     {
-        val /= range;
+        val /= (range * scale.x);
         switch (color) 
         {
             case Color.GREEN:
@@ -106,7 +107,7 @@ public class HealthBar : MonoBehaviour
         if (!IsPointInTriangle(newPos + initialPos)) 
         {
             Debug.Log("DIE WILLOW DIE");
-            return false;
+            // return false;
         }
 
         cursor.localPosition = newPos;
