@@ -31,6 +31,8 @@ public class HealthBar : MonoBehaviour
         ratio.x = ratio.x / 2;
         ratio.y = ratio.y / 2;
 
+
+        
         vertexs = new Vector2[] {  
             new Vector2(ratio.x, -ratio.y),
             new Vector2(0, ratio.y),
@@ -41,6 +43,7 @@ public class HealthBar : MonoBehaviour
 
         ratioYAxisTop = ratio.y/2 - initialPos.y;
         ratioYAxisBottom = ratio.y - ratioYAxisTop;
+        AddColor(Color.BLUE, 0f);
     }
 
     private Vector2 Centroid() 
@@ -102,11 +105,13 @@ public class HealthBar : MonoBehaviour
         Vector2 newPos = Centroid();
         if (!IsPointInTriangle(newPos + initialPos)) 
         {
+            Debug.Log("DIE WILLOW DIE");
             return false;
-
         }
 
-        cursor.position = newPos + initialPos;
+        cursor.localPosition = newPos;
+        cursor.position = (Vector2)cursor.position + initialPos;
         return true;
+
     }
 }

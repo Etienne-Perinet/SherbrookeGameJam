@@ -34,10 +34,10 @@ public class GameManager : MonoBehaviour
     {
         if(!enemyFactory.IsEmpty())
             SpawnEnemy();
-        else if(waveTimer >= 10)
+        else if(waveTimer >= 7)
         {
             waveTimer = 0;
-            enemyFactory.GenerateEnemies(50);        
+            enemyFactory.GenerateEnemies(40);        
         }
     }
 

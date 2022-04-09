@@ -86,7 +86,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &565854060559499055
@@ -171,12 +171,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 565854060559499053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 677ee12a2ae377f49a7af3998e37421e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ae6173f17a634249b3e48935f455abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 0}
-  bulletPrefab: {fileID: 0}
-  bulletForce: 20
+  moveSpeed: 5
+  rb: {fileID: 565854060559499055}
+  cam: {fileID: 0}
 --- !u!114 &5269399528900676010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,12 +186,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 565854060559499053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e58f5e16b11dab846a015199fba08eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: 80f0fcf6045740a4bb3273ed84f7aaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  rb: {fileID: 0}
-  cam: {fileID: 0}
+  firePoint: {fileID: 565854060817208321}
+  bulletPrefab: {fileID: 7331236671883018794, guid: 790d7b56369c62d4baedc27a81d5596f, type: 3}
+  bulletForce: 20
 --- !u!114 &1282840942047081784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,10 +201,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 565854060559499053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00634fbcbb0e9ab43b034917c113a3f9, type: 3}
+  m_Script: {fileID: 11500000, guid: e0ee92238ad6aef42af7841f5a9037f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthBar: 5
+  healthBar: {fileID: 0}
+  rb: {fileID: 565854060559499055}
 --- !u!1 &565854060817208320
 GameObject:
   m_ObjectHideFlags: 0

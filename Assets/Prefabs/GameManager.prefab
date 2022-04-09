@@ -40,13 +40,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6068187390962822520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0e92472b221f88418cb12f70fba0eaf, type: 3}
+  m_Script: {fileID: 11500000, guid: d18a343cfb1cf154d9abfb5304ff872a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartScene: 
+  restartScene: PlayerHealthbarTest
   endGameOverlay: {fileID: 0}
-  enemies:
-  - {fileID: 930600814220978304, guid: 7776fd347df61474e8bd30f647421ebc, type: 3}
-  - {fileID: 4751154995435369912, guid: 6d16da6939364f74cbf3e0441aaa250a, type: 3}
-  - {fileID: 4632614086723515591, guid: 970ba45ba63d04f49b08e3824a6575d3, type: 3}
+  enemies: []
   player: {fileID: 0}
