@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         else if(waveTimer >= 10)
         {
             waveTimer = 0;
-            enemyFactory.GenerateEnemies(50);        
+            enemyFactory.GenerateEnemies(20);        
         }
     }
 

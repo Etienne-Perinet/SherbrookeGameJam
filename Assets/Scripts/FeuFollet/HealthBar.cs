@@ -105,13 +105,13 @@ public class HealthBar : MonoBehaviour
         Vector2 newPos = Centroid();
         if (!IsPointInTriangle(newPos + initialPos)) 
         {
+            Debug.Log("DIE WILLOW DIE");
             return false;
-
         }
 
         cursor.localPosition = newPos;
         cursor.position = (Vector2)cursor.position + initialPos;
-                return true;
+        return true;
 
     }
 }
