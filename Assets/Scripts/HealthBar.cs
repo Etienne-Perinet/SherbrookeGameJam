@@ -25,11 +25,6 @@ public class HealthBar : MonoBehaviour
     {
         dots = new Vector2[3];
         colorRadius = 20;
-
-        AddColor(Color.RED, 70);
-        AddColor(Color.BLUE, 15);
-        AddColor(Color.GREEN, 15);
-        vPoint.position = Centroid() + DotCorrection;
     }
 
     void AddColor(Color color, float val) 
@@ -49,13 +44,14 @@ public class HealthBar : MonoBehaviour
                 dots[(int)color].y -= val;
                 break;
         }
+
+        vPoint.position = Centroid() + DotCorrection;
     }
 
     void SubColor(Color color, float val) 
     {
         AddColor(color, -val);
     }
-
 
 
     Vector2 Centroid() 
