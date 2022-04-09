@@ -7,12 +7,15 @@ public class PlayerInteractions : MonoBehaviour
 
     [SerializeField]
     private HealthBar healthBar;
-
+    private int falseHealthBar = 5;
     public Rigidbody2D rb;
+
+    private string lastEnemyColor;
 
     private void Die() 
     {
         gameObject.SetActive(false);   
+        FindObjectOfType<GameManager>().EndGame();
     }
 
     private void OnCollisionEnter2D(Collision2D other) 
@@ -34,16 +37,22 @@ public class PlayerInteractions : MonoBehaviour
             {
                 case "Red":
                     healthBar.AddColor(HealthBar.Color.RED, other.gameObject.GetComponent<Enemy>().GetEnemyCollisionDamage());
+                    lastEnemyColor = "Red";Debug.Log("Last enemy damage : " + lastEnemyColor);
+                    falseHealthBar--;
                     break;
                 case "Blue":
                     healthBar.AddColor(HealthBar.Color.BLUE, other.gameObject.GetComponent<Enemy>().GetEnemyCollisionDamage());
+                    lastEnemyColor = "Blue"; Debug.Log("Last enemy damage : " + lastEnemyColor);
+                    falseHealthBar--;
                     break;
                 case "Green":
                     healthBar.AddColor(HealthBar.Color.GREEN, other.gameObject.GetComponent<Enemy>().GetEnemyCollisionDamage());
+                    lastEnemyColor = "Green";Debug.Log("Last enemy damage : " + lastEnemyColor);
+                    falseHealthBar--;
                     break;
             }
         } 
-        if(healthBar.IsDead())
+        if(healthBar.IsDead() || falseHealthBar < 1)
             Die();
     }
 }

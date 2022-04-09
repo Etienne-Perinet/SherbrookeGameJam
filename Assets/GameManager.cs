@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     private EnemiesFactory factory = new EnemiesFactory();
+
+    [SerializeField]
+    private string restartScene;
+    [SerializeField]
+    private GameObject endGameOverlay;
 
     public GameObject redEnemy;
     public GameObject greenEnemy;
@@ -27,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     void Start() 
     {
+        if(endGameOverlay == null)
+            endGameOverlay = GameObject.Find("Overlay");
         player = GameObject.Find("FeuFollet");
         NextWave();
     }
@@ -58,4 +66,15 @@ public class GameManager : MonoBehaviour
         newPos.x = player.transform.position.x + (radius * Mathf.Cos(angle));
         return newPos;
     }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene(restartScene);
+    }
+
+    public void EndGame()
+    {
+        endGameOverlay.SetActive(true);
+    }
+
 }
