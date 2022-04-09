@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class RedEnemy : Enemy
 {
+    void Start()
+    {
+        health = 2;
+    }
+
 
 }

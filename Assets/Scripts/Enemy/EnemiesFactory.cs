@@ -20,13 +20,13 @@ public class EnemiesFactory : MonoBehaviour
 
     public void GenerateWave(int r, int g, int b) {
         for (int i = 0; i < r; i++)
-            enemies.Add(new RedEnemy().Spawn());
+            enemies.Add(new RedEnemy());
 
         for (int i = 0; i < g; i++)
-            enemies.Add(new GreenEnemy().Spawn());
+            enemies.Add(new GreenEnemy());
 
         for (int i = 0; i < b; i++)
-            enemies.Add(new BlueEnemy().Spawn());
+            enemies.Add(new BlueEnemy());
     }
 
 

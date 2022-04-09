@@ -5,7 +5,8 @@ using UnityEngine;
 public abstract class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private float speed =2;
-    private Transform target;
+    [SerializeField]
+    protected Transform target;
 
     protected virtual void Start()
     {
@@ -21,4 +22,12 @@ public abstract class EnemyMovement : MonoBehaviour
         Move(speed);
     }
 
+    protected Vector3 randomPos() {
+        float radius = 5f;
+        float angle = Random.Range(0f, 360f);
+        Vector3 newPos = new Vector3();
+        newPos.y = target.position.y + (radius * Mathf.Sin(angle));
+        newPos.x = target.position.x + (radius * Mathf.Cos(angle));
+        return newPos;
+    }
 }
