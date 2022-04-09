@@ -22,7 +22,7 @@ public class HealthBar : MonoBehaviour
 
     [SerializeField] private Vector2[] vertexs;
 
-    void Start() 
+    void Start()
     {
         dots = new Vector2[3];
         
@@ -41,13 +41,6 @@ public class HealthBar : MonoBehaviour
 
         ratioYAxisTop = ratio.y/2 - initialPos.y;
         ratioYAxisBottom = ratio.y - ratioYAxisTop;
-
-        Debug.Log(AddColor(Color.RED, 15f));
-        Debug.Log(GetColor());
-        Debug.Log(AddColor(Color.BLUE, 15f));
-        Debug.Log(GetColor());
-        Debug.Log(AddColor(Color.GREEN, 78f));
-        Debug.Log(GetColor());
     }
 
     private Vector2 Centroid() 
@@ -68,6 +61,7 @@ public class HealthBar : MonoBehaviour
             ? new Vector2()
             : new Vector2(totalX / count, totalY / count);
     }
+
 
     private float Sign(Vector2 v1, Vector2 v2, Vector2 v3) {
         return (v1.x - v3.x) * (v2.y - v3.y) - (v2.x - v3.x) * (v1.y - v3.y);
@@ -106,12 +100,13 @@ public class HealthBar : MonoBehaviour
         }
 
         Vector2 newPos = Centroid();
-        if (!IsPointInTriangle(newPos + initialPos)) {
+        if (!IsPointInTriangle(newPos + initialPos)) 
+        {
             return false;
+
         }
 
         cursor.position = newPos + initialPos;
         return true;
     }
-    
 }
