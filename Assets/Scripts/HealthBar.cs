@@ -19,7 +19,7 @@ public class HealthBar : MonoBehaviour
 
     [SerializeField] private Transform vPoint;
 
-    private Vector2 DotCorrection = new Vector2(0, .36f);
+    private Vector2 dotCorrection = new Vector2(0, .36f);
 
     private Vector2 ratio;
     private float maxContainerSize;
@@ -56,7 +56,7 @@ public class HealthBar : MonoBehaviour
                 break;
         }
 
-        Vector2 newPos = Centroid() * ratio + DotCorrection;
+        Vector2 newPos = Centroid() * ratio + dotCorrection;
         if (IsDead(newPos)) {
             throw new System.Exception("yooo t mort dude");
         }
@@ -70,7 +70,7 @@ public class HealthBar : MonoBehaviour
     }
 
     bool IsDead(Vector2 pos) {
-        pos -= DotCorrection;
+        pos -= dotCorrection;
         return pos.x >= maxContainerSize || pos.x <= -maxContainerSize 
             || pos.y >= maxContainerSize || pos.y <= -maxContainerSize;
     }
