@@ -5,13 +5,23 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] private float speed = 2f;
-    [SerializeField] protected GameObject prefab;
-    protected int health = 1;
-    protected Transform target;
-    public string Type { get; protected set; } 
-    public int Damage { get; protected set; } 
+    // [SerializeField] private float speed = 2f;
+    // [SerializeField] protected GameObject prefab;
+    // protected int health = 1;
+    // protected Transform target;
+    // public string Type { get; protected set; } 
+    // public int Damage { get; protected set; } 
 
+    [SerializeField] private float speed =2;
+    public GameObject deathAnimation;
+
+    [SerializeField]
+    protected Transform target;
+    [SerializeField]
+    public int health = 1;
+
+    protected string enemyType;
+    protected float collisionDamage = 1f;
 
     protected virtual void Awake()
     {
@@ -20,8 +30,6 @@ public abstract class Enemy : MonoBehaviour
         target = GameObject.Find("FeuFollet").GetComponent<Transform>();
         
     }
-
-    protected virtual void Collide() {}
 
     protected virtual void Die() 
     {
@@ -35,6 +43,16 @@ public abstract class Enemy : MonoBehaviour
         Debug.Log("Collision other : " + other.gameObject.tag);
         if(other.gameObject.CompareTag("PlayerBullet"))
             health--;
+        else if(other.gameObject.CompareTag("Player"))
+        {
+            if(deathAnimation != null)
+            {
+                GameObject effect = Instantiate(deathAnimation, transform.position, Quaternion.identity);
+                Destroy(effect, 0.4f);
+            }
+            Die();
+        }
+
         if(health < 1)
             Die();
     }
@@ -42,6 +60,16 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Move(float _speed) 
     {
         transform.position = Vector2.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
+    }
+
+    public string GetEnemyDamageType()
+    {
+        return enemyType;
+    }
+
+        public float GetEnemyCollisionDamage()
+    {
+        return collisionDamage;
     }
 
     protected virtual void Update()

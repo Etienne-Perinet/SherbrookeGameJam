@@ -24,6 +24,8 @@ public class HealthBar : MonoBehaviour
     private Vector2 ratio;
     private float maxContainerSize;
 
+    private Vector2 currentPos;
+
  
     // Start is called before the first frame update
     void Start()
@@ -39,7 +41,7 @@ public class HealthBar : MonoBehaviour
         SubColor(Color.RED, 1);
     }
 
-    void AddColor(Color color, float val) 
+    public void AddColor(Color color, float val) 
     {
         val /= colorRadius;
         switch (color) 
@@ -58,6 +60,7 @@ public class HealthBar : MonoBehaviour
         }
 
         Vector2 newPos = Centroid() * ratio + dotCorrection;
+        currentPos = newPos;
         if (IsDead(newPos)) {
             throw new System.Exception("yooo t mort dude");
         }
@@ -65,7 +68,7 @@ public class HealthBar : MonoBehaviour
         vPoint.position = newPos;
     }
 
-    void SubColor(Color color, float val) 
+    public void SubColor(Color color, float val) 
     {
         val /= colorRadius;
         switch (color) 
@@ -100,6 +103,13 @@ public class HealthBar : MonoBehaviour
         pos -= dotCorrection;
         return pos.x >= maxContainerSize || pos.x <= -maxContainerSize 
             || pos.y >= maxContainerSize || pos.y <= -maxContainerSize;
+    }
+
+    public bool IsDead()
+    {
+        currentPos -=dotCorrection;
+        return currentPos.x >= maxContainerSize || currentPos.x <= -maxContainerSize 
+            || currentPos.y >= maxContainerSize || currentPos.y <= -maxContainerSize;
     }
 
     Vector2 Centroid() 
