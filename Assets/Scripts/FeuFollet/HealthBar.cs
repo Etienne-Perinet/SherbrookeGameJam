@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour 
 {
@@ -30,7 +31,7 @@ public class HealthBar : MonoBehaviour
         
 
         ratio = GetComponent<SpriteRenderer>().bounds.size;
-        scale = GetComponent<SpriteRenderer>().transform.localScale;
+        scale = GetComponent<SpriteRenderer>().transform.lossyScale;
         ratio.x = ratio.x / 2;
         ratio.y = ratio.y / 2;
         
@@ -44,7 +45,11 @@ public class HealthBar : MonoBehaviour
 
         ratioYAxisTop = ratio.y/2 - initialPos.y;
         ratioYAxisBottom = ratio.y - ratioYAxisTop;
-        AddColor(Color.BLUE, 10f);
+
+        AddColor(Color.RED, 2);
+        AddColor(Color.GREEN, 2);
+        AddColor(Color.BLUE, 3);
+        Debug.Log(GetColor());
     }
 
     private Vector2 Centroid() 
@@ -64,6 +69,25 @@ public class HealthBar : MonoBehaviour
         return  count == 0 
             ? new Vector2()
             : new Vector2(totalX / count, totalY / count);
+    }
+
+    public string GetColor() {
+        float dr = Mathf.Sqrt((dots[0].x * dots[0].x) + (dots[0].y * dots[0].y));
+        float dg = Mathf.Sqrt((dots[1].x * dots[1].x) + (dots[1].y * dots[1].y));
+        float db = Mathf.Sqrt((dots[2].x * dots[2].x) + (dots[2].y * dots[2].y));
+
+        if ((int)dr == (int)dg && (int)dg == (int)db) {
+            return "#000000";
+        }
+
+        float r = dr * 255 / Mathf.Sqrt((vertexs[0].x * vertexs[0].x) + (vertexs[0].y * vertexs[0].y)) * scale.x;
+        float g = dg * 255 / Mathf.Sqrt((vertexs[0].x * vertexs[0].x) + (vertexs[0].y * vertexs[0].y)) * scale.x;
+        float b = db * 255 / Mathf.Sqrt((vertexs[0].x * vertexs[0].x) + (vertexs[0].y * vertexs[0].y)) * scale.x;
+
+        Color32 c = new Color32((byte)(int)r, (byte)(int)g, (byte)(int)b, 0xff);
+
+        return string.Format("{0:X2}{1:X2}{2:X2}", c.r, c.g, c.b);
+
     }
 
 
@@ -107,7 +131,7 @@ public class HealthBar : MonoBehaviour
         if (!IsPointInTriangle(newPos + initialPos)) 
         {
             Debug.Log("DIE WILLOW DIE");
-            // return false;
+            return false;
         }
 
         cursor.localPosition = newPos;
