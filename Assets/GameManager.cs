@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     void NextWave() 
     {
         
-        Instantiate(redEnemy, randomPos(), Quaternion.identity);
+        //Instantiate(redEnemy, randomPos(), Quaternion.identity);
         GenerateWave(redEnemies, greenEnemies, blueEnemies);
     }
 
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     protected Vector3 randomPos() {
         //Debug.Log("target : " + player.name);
-        float radius = 15f;
+        float radius = Random.Range(15f, 25f);
         float angle = Random.Range(0f, 360f);
         Vector3 newPos = new Vector3();
         newPos.y = player.transform.position.y + (radius * Mathf.Sin(angle));

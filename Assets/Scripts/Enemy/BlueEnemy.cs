@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class BlueEnemy : Enemy
 {
-
+    void Start()
+    {
+        enemyType = "Blue";
+    }
 }
