@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] private float speed =2;
-    [SerializeField]
-    protected Transform target;
-    [SerializeField]
+    [SerializeField] private float speed = 2f;
+    [SerializeField] protected GameObject prefab;
     protected int health = 1;
+    protected Transform target;
+    public string Type { get; protected set; } 
+    public int Damage { get; protected set; } 
+
 
     protected virtual void Awake()
     {
@@ -31,14 +34,13 @@ public abstract class Enemy : MonoBehaviour
     {
         Debug.Log("Collision other : " + other.gameObject.tag);
         if(other.gameObject.CompareTag("PlayerBullet"))
-        {
             health--;
-        }
         if(health < 1)
             Die();
     }
 
-    protected virtual void Move(float _speed) {
+    protected virtual void Move(float _speed) 
+    {
         transform.position = Vector2.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
     }
 

@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
 
     void NextWave() 
     {
-        
         Instantiate(redEnemy, randomPos(), Quaternion.identity);
         GenerateWave(redEnemies, greenEnemies, blueEnemies);
     }
