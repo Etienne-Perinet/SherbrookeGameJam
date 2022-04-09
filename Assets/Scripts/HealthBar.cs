@@ -29,13 +29,10 @@ public class HealthBar : MonoBehaviour
     void Start()
     {
         dots = new Vector2[3];
-        colorRadius = 20;
 
         Vector3 container = GetComponent<SpriteRenderer>().bounds.extents;
         ratio = new Vector2(container.x, container.y);
         maxContainerSize = colorRadius / container.y;
-
-        AddColor(Color.RED, 20);
     }
 
     void AddColor(Color color, float val) 
