@@ -30,9 +30,13 @@ public class HealthBar : MonoBehaviour
     {
         dots = new Vector2[3];
 
+
+
         Vector3 container = GetComponent<SpriteRenderer>().bounds.extents;
         ratio = new Vector2(container.x, container.y);
         maxContainerSize = colorRadius / container.y;
+
+        SubColor(Color.RED, 1);
     }
 
     void AddColor(Color color, float val) 
@@ -63,7 +67,33 @@ public class HealthBar : MonoBehaviour
 
     void SubColor(Color color, float val) 
     {
-        AddColor(color, -val);
+        val /= colorRadius;
+        switch (color) 
+        {
+            case Color.GREEN:
+                if (dots[(int)color] != new Vector2()) {
+                    dots[(int)color].x += val;
+                    dots[(int)color].y -= val;
+                }
+                
+                break;
+            case Color.RED:
+                if (dots[(int)color] != new Vector2()) {
+                    dots[(int)color].x -= val;
+                    dots[(int)color].y += val;
+                }
+
+                break;
+            case Color.BLUE:
+                if (dots[(int)color] != new Vector2()) {
+                    dots[(int)color].y += val;
+                }
+
+                break;
+        }
+
+        Vector2 newPos = Centroid() * ratio + dotCorrection;
+        vPoint.position = newPos;
     }
 
     bool IsDead(Vector2 pos) {
