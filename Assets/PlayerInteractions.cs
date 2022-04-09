@@ -6,6 +6,8 @@ public class PlayerInteractions : MonoBehaviour
 {
     [SerializeField]
     int HealthBar = 5;
+    
+    
 
     void Awake() 
     {
