@@ -6,14 +6,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     private EnemiesFactory enemyFactory;
+    private float waveTimer = 0f;
+
     [SerializeField] private List<Enemy> enemies;
 
-    public int redEnemies;
-    public int greenEnemies;
-    public int blueEnemies;
-
-    [SerializeField]
-    private GameObject player;
+    [SerializeField] private GameObject player;
     
     void Awake() 
     {
@@ -31,12 +28,17 @@ public class GameManager : MonoBehaviour
 
     void Update() 
     {
-        Debug.Log("Is it empty " + enemyFactory.IsEmpty());
         if(!enemyFactory.IsEmpty())
-        {
-            Debug.Log("Not empty");
             SpawnEnemy();
-        }
+        else if(waveTimer >= 10)
+        {
+            waveTimer = 0;
+            enemyFactory.GenerateEnemies(50);        }
+    }
+
+    void FixedUpdate()
+    {
+        waveTimer += Time.deltaTime; 
     }
 
     void SpawnEnemy() => Instantiate(enemyFactory.NextEnemy().Prefab, RandomPos(), Quaternion.identity);

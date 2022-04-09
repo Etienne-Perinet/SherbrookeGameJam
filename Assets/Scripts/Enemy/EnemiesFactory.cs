@@ -43,16 +43,7 @@ public class EnemiesFactory : MonoBehaviour
 
     }
 
-    // public void GenerateWave(int r, int g, int b) {
-    //     for (int i = 0; i < r; i++)
-    //         enemiesToSpawn.Enqueue(new RedEnemy());
 
-    //     for (int i = 0; i < g; i++)
-    //         enemiesToSpawn.Enqueue(new GreenEnemy());
-
-    //     for (int i = 0; i < b; i++)
-    //         enemiesToSpawn.Enqueue(new BlueEnemy());
-    // }
 
 
 }
