@@ -57,29 +57,6 @@ public class AudioManager : MonoBehaviour
         s.source.spatialBlend = s.space;
     }
 
-    public void setSoundVolume(string name, float value)
-    {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.LogWarning("Sound : " + name + " wasn't found!");
-            return;
-        }
-        //Debug.Log("VOLUME : " + s.volume * value);
-        s.source.volume = s.volume * value;
-    }
-
-    public float getSoundVolume(string name)
-    {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.LogWarning("Sound : " + name + " wasn't found!");
-            return 0;
-        }
-        return s.source.volume;
-    }
-
     public void AttributeAudioSource(string name, AudioSource source)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -110,7 +87,6 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound : " + name + " wasn't found!");
             return;
         }
-        Debug.Log("Source ? : " + s.name + " " + s.source);
         if (!s.source.isPlaying)
         {
             s.source.Play();

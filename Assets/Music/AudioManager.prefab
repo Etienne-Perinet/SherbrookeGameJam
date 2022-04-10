@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8637769078679701836}
   - component: {fileID: 8637769078679701837}
+  - component: {fileID: 7259429424964173013}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -40,71 +41,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 8637769078679701826}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c597cc7d8ed6fe34bbccbb721234d691, type: 3}
+  m_Script: {fileID: 11500000, guid: 69ca02e2220905b4894e988a0c6b9117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: StartMenu
-    clip: {fileID: 8300000, guid: d1227188a1c09bb458aca8a1d1b11513, type: 3}
-    volume: 0.3
-    pitch: 1
-    space: 0
-    sourceIsObject: 0
-    source: {fileID: 0}
-    loop: 1
-  - name: StemBase
-    clip: {fileID: 8300000, guid: 44c9745f789197644a7ae53cb4cdc774, type: 3}
-    volume: 0.3
-    pitch: 1
-    space: 0
-    sourceIsObject: 0
-    source: {fileID: 0}
-    loop: 1
-  - name: StemBlue
-    clip: {fileID: 8300000, guid: 2dad9abe3f44af34faf0d5c5c9070010, type: 3}
-    volume: 0.3
-    pitch: 1
-    space: 0
-    sourceIsObject: 0
-    source: {fileID: 0}
-    loop: 1
-  - name: StemGreen
-    clip: {fileID: 8300000, guid: 66650eb96c64d96479abf99be2422770, type: 3}
-    volume: 0.3
-    pitch: 1
-    space: 0
-    sourceIsObject: 0
-    source: {fileID: 0}
-    loop: 1
-  - name: StemRed
-    clip: {fileID: 8300000, guid: 800cf6cad5eae6c4f94735851e74329b, type: 3}
-    volume: 0.3
-    pitch: 1
-    space: 0
-    sourceIsObject: 0
-    source: {fileID: 0}
-    loop: 1
   - name: GameOver
-    clip: {fileID: 8300000, guid: 37494c466be5e61418afa286a645ee7d, type: 3}
-    volume: 0.3
-    pitch: 1
+    clip: {fileID: 0}
+    volume: 0.29
+    pitch: 0
     space: 0
     sourceIsObject: 0
     source: {fileID: 0}
     loop: 0
-  - name: GunSound
-    clip: {fileID: 8300000, guid: 00b7521802cf4714aa67d5536d81f872, type: 3}
-    volume: 0.3
-    pitch: 1
-    space: 0.5
-    sourceIsObject: 1
-    source: {fileID: 0}
-    loop: 0
-  - name: DamageSound
-    clip: {fileID: 8300000, guid: 440f5fad09e3bb440b4f60b90dbac489, type: 3}
-    volume: 0.3
-    pitch: 1
-    space: 0.5
-    sourceIsObject: 1
-    source: {fileID: 0}
-    loop: 0
+--- !u!114 &7259429424964173013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8637769078679701826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ca02e2220905b4894e988a0c6b9117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds: []
