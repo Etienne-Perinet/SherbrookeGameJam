@@ -14,6 +14,7 @@ public class PlayerInteractions : MonoBehaviour
 
     private int playerPoints;
     public TextMeshProUGUI pointsUI;
+    public SpriteRenderer feuSprite;
 
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class PlayerInteractions : MonoBehaviour
 
     private void ChangeColor(string hex) 
     {
+        feuSprite.color = HexToRGB(hex);
         GetComponent<SpriteRenderer>().color = HexToRGB(hex);
     }
 
