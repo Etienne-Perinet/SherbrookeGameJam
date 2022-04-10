@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed;
     [SerializeField] private float maxSpeed = 22f;
 
     public Rigidbody2D rb;
@@ -13,6 +13,10 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movement;
     Vector2 mousePos;
 
+    void Start() 
+    {
+        moveSpeed = 5f;    
+    }
 
     void Update()
     {

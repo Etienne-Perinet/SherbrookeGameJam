@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     private EnemiesFactory enemyFactory;
+    private int nextWaveTime = 5;
+    private float wantedCost = 10;
     private float waveTimer = 0f;
     private float gameTimer = 0f;
     private float increasePercent;
@@ -66,10 +68,13 @@ public class GameManager : MonoBehaviour
         {
             if(!enemyFactory.IsEmpty())
             SpawnEnemy();
-            else if(waveTimer >= 7)
+            else if(waveTimer >= nextWaveTime)
             {
                 waveTimer = 0;
-                enemyFactory.GenerateEnemies(40);
+                nextWaveTime = Random.Range(5, 60);
+                wantedCost = ((float)nextWaveTime*0.1f + 10f)*10;
+                Debug.Log("nextWaveTime " + nextWaveTime + " wanted cost " + wantedCost);
+                enemyFactory.GenerateEnemies((int)wantedCost);
                 IncreaseCost();     
             }
         }

@@ -5,10 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] private float speed = 2f;
-    [SerializeField] protected float health = 1f;
-    [SerializeField] private float maxSpeed = 30f;
-    
+    [SerializeField] protected float initialSpeed;
+    protected float maxSpeed;
+    protected float speed;
+    protected float health;
     protected Transform target;
     public GameObject deathAnimation;
     protected HealthBar.Color enemyType;
