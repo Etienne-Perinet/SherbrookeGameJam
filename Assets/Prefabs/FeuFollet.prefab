@@ -176,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
   rb: {fileID: 565854060559499055}
+  pointsUI: {fileID: 0}
 --- !u!114 &4581650515868807343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e58f5e16b11dab846a015199fba08eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 6
   rb: {fileID: 565854060559499055}
   cam: {fileID: 0}
 --- !u!114 &7252120788671377761
