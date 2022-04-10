@@ -3270,6 +3270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e5b3e1397220d45b82fe610a1c319e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   restartScene: PlayerHealthbarTest
   endGameOverlay: {fileID: 0}
   redEnemy: {fileID: 1788079836208447225, guid: 72895976545aaad469c62cf95f1f5ef2, type: 3}
@@ -3280,6 +3281,10 @@ MonoBehaviour:
   blueEnemies: 3
   player: {fileID: 0}
 --- !u!4 &343877286
+=======
+  restartScene: PointsTest
+--- !u!4 &342322960
+>>>>>>> Stashed changes
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
