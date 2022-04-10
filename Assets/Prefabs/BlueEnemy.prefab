@@ -172,8 +172,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 766946617333f2649a28a4943801fcae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  health: 1
+  speed: 3.2262452
+  health: 5
+  maxSpeed: 30
   deathAnimation: {fileID: 0}
   <CollisionDamage>k__BackingField: 7
   <Prefab>k__BackingField: {fileID: 1788079836208447225}

@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Starting audio manager");
+        // Debug.Log("Starting audio manager");
         //Play("Music");
     }
 
@@ -110,7 +110,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound : " + name + " wasn't found!");
             return;
         }
-        Debug.Log("Source ? : " + s.name + " " + s.source);
+        // Debug.Log("Source ? : " + s.name + " " + s.source);
         if (!s.source.isPlaying)
         {
             s.source.Play();

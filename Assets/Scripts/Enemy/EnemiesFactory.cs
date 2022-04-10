@@ -20,7 +20,6 @@ public class EnemiesFactory
         {
             int randIndex = Random.Range(0, enemies.Count);
             int randCost = Random.Range(0, enemies[randIndex].Cost);
-            Debug.Log("Rand cost " + randCost + " " + enemies[randIndex].Prefab.name);
 
             if(cost - randCost >= 0)
             {
@@ -35,13 +34,13 @@ public class EnemiesFactory
 
     public bool IsEmpty() => enemiesToSpawn.Count <= 0; 
 
-    public Enemy NextEnemy() 
+    public Enemy NextEnemy() => enemiesToSpawn.Dequeue();
+
+    public void IncreaseCost(float gameTimer)
     {
-        return enemiesToSpawn.Dequeue();
-
+        for(int i = 0; i < enemies.Count; i++)
+        {
+            enemies[i].IncreaseCost(gameTimer);
+        }
     }
-
-
-
-
 }
