@@ -20,7 +20,7 @@ TagManager:
   - Enemy
   - HealthBar
   - 
-  - 
+  - OutOfTheMap
   - 
   - 
   - 
@@ -42,4 +42,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Obtacle
+    uniqueID: 2836445629
+    locked: 0
+  - name: Decoration
+    uniqueID: 4033648751
+    locked: 0
+  - name: Player
+    uniqueID: 4039664509
+    locked: 0
+  - name: Ennemy
+    uniqueID: 2098783515
+    locked: 0
+  - name: UI
+    uniqueID: 3792209941
     locked: 0
