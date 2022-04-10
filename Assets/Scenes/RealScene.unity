@@ -166,11 +166,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2294674759215437070, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
       propertyPath: m_LocalPosition.x
+
       value: 24.1
       objectReference: {fileID: 0}
     - target: {fileID: 2294674759215437070, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
       propertyPath: m_LocalPosition.y
       value: 14.5
+
       objectReference: {fileID: 0}
     - target: {fileID: 2294674759215437070, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -206,7 +208,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3038622530997936885, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
       propertyPath: m_SortingOrder
-      value: 110
+      value: 149
+
       objectReference: {fileID: 0}
     - target: {fileID: 7026953275252671723, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
       propertyPath: target
@@ -32185,6 +32188,7 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+
 --- !u!1 &1491697965
 GameObject:
   m_ObjectHideFlags: 0

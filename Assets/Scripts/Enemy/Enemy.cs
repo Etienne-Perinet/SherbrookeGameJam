@@ -32,7 +32,9 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Die() 
     {
-        Debug.Log("Dieee");
+        //Debug.Log("Dieee");
+        FindObjectOfType<PlayerInteractions>().AddPoints(Cost);
+        FindObjectOfType<GameManager>().DecrementEnemyCount(enemyType);
         Destroy(gameObject);
     }
 
@@ -66,7 +68,7 @@ public abstract class Enemy : MonoBehaviour
         return enemyType;
     }
 
-        public float GetEnemyCollisionDamage()
+    public float GetEnemyCollisionDamage()
     {
         return CollisionDamage;
     }
