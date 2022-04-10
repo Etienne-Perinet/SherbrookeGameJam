@@ -58,8 +58,6 @@ public class PlayerInteractions : MonoBehaviour
             //     rb.AddForce(difference, ForceMode2D.Impulse);
             //     rb.isKinematic = true; 
             // }
-<<<<<<< Updated upstream
-=======
             if(gameObject.GetComponent<AudioManager>() == null)
             {
                 FindObjectOfType<AudioManager>().AttributeAudioSource("DamageSound", gameObject.AddComponent<AudioSource>());
@@ -68,7 +66,6 @@ public class PlayerInteractions : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("DamageSound");
             AddPoints(10);
 
->>>>>>> Stashed changes
             Debug.Log(healthBar.GetColor());
             ChangeColor("#"+healthBar.GetColor());
 
