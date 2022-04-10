@@ -133,17 +133,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 565854060559499053, guid: 3bcedb26cd32dd64ab294bbafaad6d50, type: 3}
   m_PrefabInstance: {fileID: 1232113747}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &632349727 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6100721612588563896, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
-  m_PrefabInstance: {fileID: 707352781}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83baabfc20433f24b89d684a79036862, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &707352781
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -237,6 +226,28 @@ PrefabInstance:
       objectReference: {fileID: 1232113748}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
+--- !u!114 &707352782 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 892271044, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
+  m_PrefabInstance: {fileID: 707352781}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &707352783 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4850001495062507936, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
+  m_PrefabInstance: {fileID: 707352781}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83baabfc20433f24b89d684a79036862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &887474186 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2294674759519594082, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
@@ -375,9 +386,13 @@ PrefabInstance:
       value: FeuFollet
       objectReference: {fileID: 0}
     - target: {fileID: 1922093652500733741, guid: 3bcedb26cd32dd64ab294bbafaad6d50, type: 3}
+      propertyPath: pointsUI
+      value: 
+      objectReference: {fileID: 707352782}
+    - target: {fileID: 1922093652500733741, guid: 3bcedb26cd32dd64ab294bbafaad6d50, type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 632349727}
+      objectReference: {fileID: 707352783}
     - target: {fileID: 4581650515868807343, guid: 3bcedb26cd32dd64ab294bbafaad6d50, type: 3}
       propertyPath: cam
       value: 
