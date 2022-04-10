@@ -3270,7 +3270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35988aa17c09ead4f91550a6b9575d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartScene: InGameLight
+  restartScene: InGame1.0
 --- !u!4 &342322960
 Transform:
   m_ObjectHideFlags: 0
