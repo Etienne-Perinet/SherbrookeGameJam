@@ -9,7 +9,7 @@ public class GreenEnemy : Enemy
         enemyType = HealthBar.Color.GREEN;
         health = 2;
         CollisionDamage = 6;
-        initialSpeed = 4;
+        initialSpeed = 6;
         maxSpeed = 40;
         speed = initialSpeed;
     }
