@@ -33,6 +33,7 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Die() 
     {
         //Debug.Log("Dieee");
+        FindObjectOfType<PlayerInteractions>().AddPoints(Cost);
         FindObjectOfType<GameManager>().DecrementEnemyCount(enemyType);
         Destroy(gameObject);
     }
