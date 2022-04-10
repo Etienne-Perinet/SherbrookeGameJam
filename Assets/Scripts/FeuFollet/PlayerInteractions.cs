@@ -16,6 +16,19 @@ public class PlayerInteractions : MonoBehaviour
         gameObject.SetActive(false);   
         FindObjectOfType<GameManager>().EndGame();
     }
+
+    private Color HexToRGB(string hex) 
+    {
+        Color c = new Color();
+        ColorUtility.TryParseHtmlString(hex, out c);
+        return c;
+    }
+
+    private void ChangeColor(string hex) 
+    {
+        GetComponent<SpriteRenderer>().color = HexToRGB(hex);
+    }
+
     private void OnCollisionEnter2D(Collision2D other) 
     {   
         if(other.gameObject.tag == "Enemy")
@@ -30,6 +43,9 @@ public class PlayerInteractions : MonoBehaviour
             //     rb.AddForce(difference, ForceMode2D.Impulse);
             //     rb.isKinematic = true; 
             // }
+            Debug.Log(healthBar.GetColor());
+            ChangeColor("#"+healthBar.GetColor());
+
             Enemy enemyObject = other.gameObject.GetComponent<Enemy>();
             HealthBar.Color enemyColor = enemyObject.GetEnemyDamageType();
             if(!healthBar.AddColor(enemyColor, enemyObject.GetEnemyCollisionDamage()))

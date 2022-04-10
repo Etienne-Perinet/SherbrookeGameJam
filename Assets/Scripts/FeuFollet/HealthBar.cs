@@ -77,7 +77,7 @@ public class HealthBar : MonoBehaviour
         float db = Mathf.Sqrt((dots[2].x * dots[2].x) + (dots[2].y * dots[2].y));
 
         if ((int)dr == (int)dg && (int)dg == (int)db) {
-            return "#000000";
+            return "#ffffff";
         }
 
         float r = dr * 255 / Mathf.Sqrt((vertexs[0].x * vertexs[0].x) + (vertexs[0].y * vertexs[0].y)) * scale.x;
