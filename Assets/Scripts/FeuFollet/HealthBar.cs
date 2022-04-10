@@ -71,6 +71,8 @@ public class HealthBar : MonoBehaviour
             : new Vector2(totalX / count, totalY / count);
     }
 
+
+
     public string GetColor() {
         float dr = Mathf.Sqrt((dots[0].x * dots[0].x) + (dots[0].y * dots[0].y));
         float dg = Mathf.Sqrt((dots[1].x * dots[1].x) + (dots[1].y * dots[1].y));
@@ -80,13 +82,32 @@ public class HealthBar : MonoBehaviour
             return "#ffffff";
         }
 
-        float r = dr * 255 / Mathf.Sqrt((vertexs[0].x * vertexs[0].x) + (vertexs[0].y * vertexs[0].y)) * scale.x;
-        float g = dg * 255 / Mathf.Sqrt((vertexs[0].x * vertexs[0].x) + (vertexs[0].y * vertexs[0].y)) * scale.x;
-        float b = db * 255 / Mathf.Sqrt((vertexs[0].x * vertexs[0].x) + (vertexs[0].y * vertexs[0].y)) * scale.x;
 
-        Color32 c = new Color32((byte)(int)r, (byte)(int)g, (byte)(int)b, 0xff);
+        Vector2 centroid = Centroid();
 
-        return string.Format("{0:X2}{1:X2}{2:X2}", c.r, c.g, c.b);
+        if (centroid.y >= 1/range)
+            return "8cc63e";
+
+        if (centroid.x >= 1/range)
+            return "f44E2a";
+
+        return "3473ba";
+
+        // float dr = Mathf.Sqrt((dots[0].x * dots[0].x) + (dots[0].y * dots[0].y));
+        // float dg = Mathf.Sqrt((dots[1].x * dots[1].x) + (dots[1].y * dots[1].y));
+        // float db = Mathf.Sqrt((dots[2].x * dots[2].x) + (dots[2].y * dots[2].y));
+
+        // if ((int)dr == (int)dg && (int)dg == (int)db) {
+        //     return "#ffffff";
+        // }
+
+        // float r = 1 * 255 / Mathf.Sqrt((vertexs[0].x * vertexs[0].x)* scale.x + (vertexs[0].y * vertexs[0].y) * scale.x) ;
+        // float g = 1 * 255 / Mathf.Sqrt((vertexs[1].x * vertexs[1].x)* scale.x + (vertexs[1].y * vertexs[1].y) * scale.x);
+        // float b = 1 * 255 / Mathf.Sqrt((vertexs[2].x * vertexs[2].x)* scale.x + (vertexs[2].y * vertexs[2].y) * scale.x);
+
+        // Color32 c = new Color32((byte)(int)r, (byte)(int)g, (byte)(int)b, 0xff);
+
+        // return string.Format("{0:X2}{1:X2}{2:X2}", c.r, c.g, c.b);
 
     }
 
