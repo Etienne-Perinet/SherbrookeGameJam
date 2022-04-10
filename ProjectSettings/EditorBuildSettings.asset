@@ -8,10 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
-    guid: 1a081228274264749a8d5713aca7a2c2
+    guid: 3065861669afa224caa9409823f0fbb7
   - enabled: 1
-    path: Assets/Scenes/PlayerHealthbarTest.unity
-    guid: f9330bde846f05747a40927857953548
+    path: Assets/Scenes/RealScene.unity
+    guid: 93abf32af0b999d4bafc04e0339e536c
   m_configObjects: {}

@@ -20,6 +20,12 @@ public class Shooting : MonoBehaviour
 
     void Shoot()
     {
+        if(gameObject.GetComponent<AudioSource>() == null)
+        {
+            FindObjectOfType<AudioManager>().AttributeAudioSource("GunSound", gameObject.AddComponent<AudioSource>());
+            FindObjectOfType<AudioManager>().AttributeAudioSource("DamageSound", gameObject.AddComponent<AudioSource>());
+        }
+        FindObjectOfType<AudioManager>().Play("GunSound");
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
