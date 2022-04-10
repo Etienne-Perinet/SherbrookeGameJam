@@ -67,7 +67,6 @@ public class PlayerInteractions : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("DamageSound");
             AddPoints(10);
 
-            Debug.Log(healthBar.GetColor());
             ChangeColor("#"+healthBar.GetColor());
 
             Enemy enemyObject = other.gameObject.GetComponent<Enemy>();

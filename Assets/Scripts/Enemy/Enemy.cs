@@ -7,6 +7,7 @@ public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] private float speed = 2f;
     [SerializeField] protected float health = 1f;
+    [SerializeField] private float maxSpeed = 30f;
     
     protected Transform target;
     public GameObject deathAnimation;
@@ -20,7 +21,7 @@ public abstract class Enemy : MonoBehaviour
 
     public int Cost 
     {
-        get { return (int)health * (int)CollisionDamage * (int)speed; }
+        get { return (int)CollisionDamage * (int)speed; }
     }
 
     protected virtual void Awake()
@@ -35,8 +36,8 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Die() 
     {
-        //Debug.Log("Dieee");
-        FindObjectOfType<PlayerInteractions>().AddPoints(Cost);
+        PlayerInteractions player =  FindObjectOfType<PlayerInteractions>();
+        if(player != null) FindObjectOfType<PlayerInteractions>().AddPoints(Cost);
         FindObjectOfType<GameManager>().DecrementEnemyCount(enemyType);
         Destroy(gameObject);
     }
@@ -71,10 +72,10 @@ public abstract class Enemy : MonoBehaviour
         return enemyType;
     }
 
-    public void IncreaseCost(float percent)
+    public void IncreaseCost(float gameTimer)
     {
-        CollisionDamage += CollisionDamage * (percent / 100);
-        health += health * (int)(percent / 100);
+        if(speed < maxSpeed)
+            speed += speed * (((float) Mathf.Pow(1.28f, 0.05f*gameTimer) + 1) / 100);
     }
 
 }

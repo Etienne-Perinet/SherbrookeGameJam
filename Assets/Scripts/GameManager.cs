@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     private EnemiesFactory enemyFactory;
     private float waveTimer = 0f;
+    private float gameTimer = 0f;
     private float increasePercent;
-
 
     [SerializeField] private string restartScene;
     [SerializeField] private GameObject endGameOverlay;
@@ -36,8 +36,6 @@ public class GameManager : MonoBehaviour
         ratios.Add(HealthBar.Color.RED, 0f);
         ratios.Add(HealthBar.Color.BLUE, 0f);
         ratios.Add(HealthBar.Color.GREEN, 0f);
-
-        Debug.Log("Awake");
     }
 
     void Start() 
@@ -71,9 +69,8 @@ public class GameManager : MonoBehaviour
             else if(waveTimer >= 7)
             {
                 waveTimer = 0;
-                enemyFactory.GenerateEnemies(40);     
-                UpdatePercent();   
-                Debug.Log("Increase percent " + increasePercent);
+                enemyFactory.GenerateEnemies(40);
+                IncreaseCost();     
             }
         }
 
@@ -83,9 +80,8 @@ public class GameManager : MonoBehaviour
     void FixedUpdate()
     {
         waveTimer += Time.deltaTime; 
+        gameTimer += Time.deltaTime; 
     }
-
-    void UpdatePercent() => increasePercent = (float) 1.2*Mathf.Pow(0.2f, waveTimer) + 2;
 
     void SpawnEnemy()
     {
@@ -108,9 +104,9 @@ public class GameManager : MonoBehaviour
         am.setSoundVolume("StemRed", ratios[HealthBar.Color.RED]);
         am.setSoundVolume("StemGreen", ratios[HealthBar.Color.GREEN]);
         am.setSoundVolume("StemBlue", ratios[HealthBar.Color.BLUE]);
-        Debug.Log("RED VOLUME : " + am.getSoundVolume("StemRed"));
-        Debug.Log("BLUE VOLUME : " + am.getSoundVolume("StemBlue"));
-        Debug.Log("GREEN VOLUME : " + am.getSoundVolume("StemGreen"));
+        // Debug.Log("RED VOLUME : " + am.getSoundVolume("StemRed"));
+        // Debug.Log("BLUE VOLUME : " + am.getSoundVolume("StemBlue"));
+        // Debug.Log("GREEN VOLUME : " + am.getSoundVolume("StemGreen"));
     }
 
     public void DecrementEnemyCount(HealthBar.Color enemyType)
@@ -159,5 +155,9 @@ public class GameManager : MonoBehaviour
         endGameOverlay.SetActive(true);
     }
 
-    public void IncreaseCost() => enemyFactory.IncreaseCost(increasePercent);
+    public void IncreaseCost() 
+    {
+        enemyFactory.IncreaseCost(gameTimer);
+        player.GetComponent<PlayerMovement>().IncreaseSpeed(gameTimer);
+    } 
 }
