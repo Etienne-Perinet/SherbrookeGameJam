@@ -31,8 +31,8 @@ public class PlayerInteractions : MonoBehaviour
             //     rb.isKinematic = true; 
             // }
             Enemy enemyObject = other.gameObject.GetComponent<Enemy>();
-            HealthBar.Color enemyColor = enemyObject.GetEnemyDamageType();
-            if(!healthBar.AddColor(enemyColor, enemyObject.GetEnemyCollisionDamage()))
+            HealthBar.Color enemyColor = enemyObject.GetEnemyDamageType(); 
+            if(!healthBar.AddColor(enemyColor, enemyObject.CollisionDamage))
             {
                 Die();
             }

@@ -49,7 +49,6 @@ public class HealthBar : MonoBehaviour
         AddColor(Color.RED, 2);
         AddColor(Color.GREEN, 2);
         AddColor(Color.BLUE, 3);
-        Debug.Log(GetColor());
     }
 
     private Vector2 Centroid() 
@@ -130,7 +129,6 @@ public class HealthBar : MonoBehaviour
         Vector2 newPos = Centroid();
         if (!IsPointInTriangle(newPos + initialPos)) 
         {
-            Debug.Log("DIE WILLOW DIE");
             return false;
         }
 

@@ -6,33 +6,35 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] private float speed = 2f;
-    [SerializeField] protected int health = 1;
+    [SerializeField] protected float health = 1f;
     
     protected Transform target;
     public GameObject deathAnimation;
-    [field: SerializeField] public int CollisionDamage { get; protected set; }
+    protected HealthBar.Color enemyType;
+
+    [field: SerializeField] public float CollisionDamage { get; protected set; }
 
     [field: SerializeField] public GameObject Prefab { get; protected set; }
 
     public int Damage { get; protected set; } 
 
-    public int Cost 
+    public float Cost 
     {
-        get { return health * CollisionDamage * (int)speed; }
+        get { return health * CollisionDamage * speed; }
     }
-    protected HealthBar.Color enemyType;
-    protected float collisionDamage = 1f;
 
     protected virtual void Awake()
     {
-        Debug.Log("Starting enemy spawn");
-        
         target = GameObject.Find("FeuFollet").GetComponent<Transform>();
+    }
+
+    protected virtual void Update()
+    {
+        Move(speed);
     }
 
     protected virtual void Die() 
     {
-        Debug.Log("Dieee");
         Destroy(gameObject);
     }
 
@@ -66,14 +68,10 @@ public abstract class Enemy : MonoBehaviour
         return enemyType;
     }
 
-        public float GetEnemyCollisionDamage()
+    public void IncreaseCost(float percent)
     {
-        return CollisionDamage;
-    }
-
-    protected virtual void Update()
-    {
-        Move(speed);
+        CollisionDamage += CollisionDamage * (percent / 100);
+        health += health * (int)(percent / 100);
     }
 
 }

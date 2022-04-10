@@ -8,10 +8,12 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     private EnemiesFactory enemyFactory;
     private float waveTimer = 0f;
+    private float increasePercent;
+
+
     [SerializeField] private string restartScene;
     [SerializeField] private GameObject endGameOverlay;
     [SerializeField] private List<Enemy> enemies;
-
     [SerializeField] private GameObject player;
     
     void Awake() 
@@ -21,7 +23,6 @@ public class GameManager : MonoBehaviour
 
         player = GameObject.Find("FeuFollet");
         enemyFactory = new EnemiesFactory(enemies);
-        Debug.Log("Awake");
     }
 
     void Start() 
@@ -40,7 +41,9 @@ public class GameManager : MonoBehaviour
             else if(waveTimer >= 7)
             {
                 waveTimer = 0;
-                enemyFactory.GenerateEnemies(40);        
+                enemyFactory.GenerateEnemies(40);     
+                UpdatePercent();   
+                Debug.Log("Increase percent " + increasePercent);
             }
         }
         
@@ -50,6 +53,9 @@ public class GameManager : MonoBehaviour
     {
         waveTimer += Time.deltaTime; 
     }
+
+    void UpdatePercent() => increasePercent = (float) 1.2*Mathf.Pow(0.2f, waveTimer) + 2;
+
 
     void SpawnEnemy() => Instantiate(enemyFactory.NextEnemy().Prefab, RandomPos(), Quaternion.identity);
 
@@ -72,4 +78,6 @@ public class GameManager : MonoBehaviour
     {
         endGameOverlay.SetActive(true);
     }
+
+    public void IncreaseCost() => enemyFactory.IncreaseCost(increasePercent);
 }
