@@ -7,11 +7,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     private EnemiesFactory enemyFactory;
+    private int nextWaveTime = 5;
+    private float wantedCost = 10;
     private float waveTimer = 0f;
+    private float gameTimer = 0f;
+    private float increasePercent;
+
     [SerializeField] private string restartScene;
     [SerializeField] private GameObject endGameOverlay;
     [SerializeField] private List<Enemy> enemies;
-
     [SerializeField] private GameObject player;
 
     Dictionary<HealthBar.Color, int> spawns = new Dictionary<HealthBar.Color, int>();
@@ -34,8 +38,6 @@ public class GameManager : MonoBehaviour
         ratios.Add(HealthBar.Color.RED, 0f);
         ratios.Add(HealthBar.Color.BLUE, 0f);
         ratios.Add(HealthBar.Color.GREEN, 0f);
-
-        Debug.Log("Awake");
     }
 
     void Start() 
@@ -66,10 +68,14 @@ public class GameManager : MonoBehaviour
         {
             if(!enemyFactory.IsEmpty())
             SpawnEnemy();
-            else if(waveTimer >= 7)
+            else if(waveTimer >= nextWaveTime)
             {
                 waveTimer = 0;
-                enemyFactory.GenerateEnemies(40);        
+                nextWaveTime = Random.Range(5, 60);
+                wantedCost = ((float)nextWaveTime*0.1f + 10f)*10;
+                Debug.Log("nextWaveTime " + nextWaveTime + " wanted cost " + wantedCost);
+                enemyFactory.GenerateEnemies((int)wantedCost);
+                IncreaseCost();     
             }
         }
 
@@ -79,6 +85,7 @@ public class GameManager : MonoBehaviour
     void FixedUpdate()
     {
         waveTimer += Time.deltaTime; 
+        gameTimer += Time.deltaTime; 
     }
 
     void SpawnEnemy()
@@ -102,9 +109,9 @@ public class GameManager : MonoBehaviour
         am.setSoundVolume("StemRed", ratios[HealthBar.Color.RED]);
         am.setSoundVolume("StemGreen", ratios[HealthBar.Color.GREEN]);
         am.setSoundVolume("StemBlue", ratios[HealthBar.Color.BLUE]);
-        Debug.Log("RED VOLUME : " + am.getSoundVolume("StemRed"));
-        Debug.Log("BLUE VOLUME : " + am.getSoundVolume("StemBlue"));
-        Debug.Log("GREEN VOLUME : " + am.getSoundVolume("StemGreen"));
+        // Debug.Log("RED VOLUME : " + am.getSoundVolume("StemRed"));
+        // Debug.Log("BLUE VOLUME : " + am.getSoundVolume("StemBlue"));
+        // Debug.Log("GREEN VOLUME : " + am.getSoundVolume("StemGreen"));
     }
 
     public void DecrementEnemyCount(HealthBar.Color enemyType)
@@ -152,4 +159,10 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("GameOver");
         endGameOverlay.SetActive(true);
     }
+
+    public void IncreaseCost() 
+    {
+        enemyFactory.IncreaseCost(gameTimer);
+        player.GetComponent<PlayerMovement>().IncreaseSpeed(gameTimer);
+    } 
 }

@@ -5,12 +5,15 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] private float speed = 2f;
-    [SerializeField] protected int health = 1;
-    
+    [SerializeField] protected float initialSpeed;
+    protected float maxSpeed;
+    protected float speed;
+    protected float health;
     protected Transform target;
     public GameObject deathAnimation;
-    [field: SerializeField] public int CollisionDamage { get; protected set; }
+    protected HealthBar.Color enemyType;
+
+    [field: SerializeField] public float CollisionDamage { get; protected set; }
 
     [field: SerializeField] public GameObject Prefab { get; protected set; }
 
@@ -18,22 +21,23 @@ public abstract class Enemy : MonoBehaviour
 
     public int Cost 
     {
-        get { return health * CollisionDamage * (int)speed; }
+        get { return (int)CollisionDamage * (int)speed; }
     }
-    protected HealthBar.Color enemyType;
-    protected float collisionDamage = 1f;
 
     protected virtual void Awake()
     {
-        Debug.Log("Starting enemy spawn");
-        
         target = GameObject.Find("FeuFollet").GetComponent<Transform>();
+    }
+
+    protected virtual void Update()
+    {
+        Move(speed);
     }
 
     protected virtual void Die() 
     {
-        //Debug.Log("Dieee");
-        FindObjectOfType<PlayerInteractions>().AddPoints(Cost);
+        PlayerInteractions player =  FindObjectOfType<PlayerInteractions>();
+        if(player != null) FindObjectOfType<PlayerInteractions>().AddPoints(Cost);
         FindObjectOfType<GameManager>().DecrementEnemyCount(enemyType);
         Destroy(gameObject);
     }
@@ -68,14 +72,10 @@ public abstract class Enemy : MonoBehaviour
         return enemyType;
     }
 
-    public float GetEnemyCollisionDamage()
+    public void IncreaseCost(float gameTimer)
     {
-        return CollisionDamage;
-    }
-
-    protected virtual void Update()
-    {
-        Move(speed);
+        if(speed < maxSpeed)
+            speed += speed * (((float) Mathf.Pow(1.28f, 0.05f*gameTimer) + 1) / 100);
     }
 
 }
