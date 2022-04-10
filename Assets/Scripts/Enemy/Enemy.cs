@@ -16,9 +16,10 @@ public abstract class Enemy : MonoBehaviour
 
     public int Damage { get; protected set; } 
 
-    public int Cost = 2;
-    //{
-    //    get { return health * CollisionDamage * (int)speed; }
+    public int Cost 
+    {
+        get { return health * CollisionDamage * (int)speed; }
+    }
     protected HealthBar.Color enemyType;
     protected float collisionDamage = 1f;
 
@@ -31,12 +32,8 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Die() 
     {
-<<<<<<< Updated upstream
-        Debug.Log("Dieee");
-=======
-        FindObjectOfType<PlayerInteractions>().AddPoints(Cost);
+        //Debug.Log("Dieee");
         FindObjectOfType<GameManager>().DecrementEnemyCount(enemyType);
->>>>>>> Stashed changes
         Destroy(gameObject);
     }
 
@@ -70,7 +67,7 @@ public abstract class Enemy : MonoBehaviour
         return enemyType;
     }
 
-        public float GetEnemyCollisionDamage()
+    public float GetEnemyCollisionDamage()
     {
         return CollisionDamage;
     }
