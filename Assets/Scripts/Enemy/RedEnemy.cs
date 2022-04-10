@@ -6,7 +6,7 @@ public class RedEnemy : Enemy
 {
     void Start()
     {
-        health = 2;
+        //health = 2;
         enemyType = HealthBar.Color.RED;
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerInteractions : MonoBehaviour
 {
@@ -11,11 +12,38 @@ public class PlayerInteractions : MonoBehaviour
 
     private HealthBar.Color lastEnemyColor;
 
+    private int playerPoints;
+    public TextMeshProUGUI pointsUI;
+
+    private void Awake()
+    {
+        playerPoints = 0;
+    }
+
+    void Update()
+    {
+        if(pointsUI != null)
+            pointsUI.SetText(playerPoints + "");
+    }
+
     private void Die() 
     {
         gameObject.SetActive(false);   
         FindObjectOfType<GameManager>().EndGame();
     }
+
+    private Color HexToRGB(string hex) 
+    {
+        Color c = new Color();
+        ColorUtility.TryParseHtmlString(hex, out c);
+        return c;
+    }
+
+    private void ChangeColor(string hex) 
+    {
+        GetComponent<SpriteRenderer>().color = HexToRGB(hex);
+    }
+
     private void OnCollisionEnter2D(Collision2D other) 
     {   
         if(other.gameObject.tag == "Enemy")
@@ -30,6 +58,18 @@ public class PlayerInteractions : MonoBehaviour
             //     rb.AddForce(difference, ForceMode2D.Impulse);
             //     rb.isKinematic = true; 
             // }
+
+            if(gameObject.GetComponent<AudioManager>() == null)
+            {
+                FindObjectOfType<AudioManager>().AttributeAudioSource("DamageSound", gameObject.AddComponent<AudioSource>());
+            }
+
+            FindObjectOfType<AudioManager>().Play("DamageSound");
+            AddPoints(10);
+
+            Debug.Log(healthBar.GetColor());
+            ChangeColor("#"+healthBar.GetColor());
+
             Enemy enemyObject = other.gameObject.GetComponent<Enemy>();
             HealthBar.Color enemyColor = enemyObject.GetEnemyDamageType(); 
             if(!healthBar.AddColor(enemyColor, enemyObject.CollisionDamage))
@@ -45,4 +85,6 @@ public class PlayerInteractions : MonoBehaviour
         //if(healthBar.IsDead() || falseHealthBar < 1)
             //Die();
     }
+
+    public void AddPoints(int p) => playerPoints += p;
 }
