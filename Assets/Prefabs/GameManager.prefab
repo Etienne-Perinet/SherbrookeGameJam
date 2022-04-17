@@ -58,6 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872ec3f559c24b64686d8415e63af725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  enemiesType: []
+  enemiesType:
+  - {fileID: 2246748386601214517, guid: 970ba45ba63d04f49b08e3824a6575d3, type: 3}
+  - {fileID: 7507134723547207384, guid: 6d16da6939364f74cbf3e0441aaa250a, type: 3}
+  - {fileID: 6775578803265522924, guid: 7776fd347df61474e8bd30f647421ebc, type: 3}
   waves: []

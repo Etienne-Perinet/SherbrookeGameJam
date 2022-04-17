@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wave : MonoBehaviour
+[System.Serializable]
+public class Wave
 {
-    public int nbEnemies;
-    public float waveTime;
-    
+    [field: SerializeField] public int NbEnemies { get; protected set; }
+    [field: SerializeField] public float WaveTime { get; protected set; }
 
+    public Wave(int nbEnemies, float waveTime)
+    {
+        NbEnemies = nbEnemies;
+        WaveTime = waveTime;
+    }
 }

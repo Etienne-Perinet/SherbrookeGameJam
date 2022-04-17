@@ -8,8 +8,7 @@ public class WaveSpawner : MonoBehaviour
     private float waveTimer;
     private int currentWave;
     private GameManager gameManager;
-
-    [SerializeField] private GameObject player;
+    private GameObject player;
     [SerializeField] private List<Enemy> enemiesType;
     [SerializeField] private List<Wave> waves;
 
@@ -25,7 +24,8 @@ public class WaveSpawner : MonoBehaviour
     {
         currentWave = 0;
         waveTimer = 0f;
-        enemyFactory.GenerateEnemies(3);
+        CreateWaves();
+        enemyFactory.GenerateEnemies(waves[currentWave].NbEnemies);
     }
 
     void Update()
@@ -33,14 +33,31 @@ public class WaveSpawner : MonoBehaviour
         if(player.activeSelf)
         {
             if(!enemyFactory.IsEmpty())
-            SpawnEnemy();
-            else if(waveTimer >= 7)
-            {
-                waveTimer = 0;
-                enemyFactory.GenerateEnemies(10);        
+                SpawnEnemy();
+            else if(waveTimer >= waves[currentWave].WaveTime)
+            {   
+                Nextwave();
             }
         }
     }
+
+    void CreateWaves()
+    {
+        waves.Add(new Wave(5, 5));
+        waves.Add(new Wave(7, 5));
+        waves.Add(new Wave(8, 7));
+        waves.Add(new Wave(10, 7));
+        waves.Add(new Wave(10, 10));
+        waves.Add(new Wave(10, 7));
+    }
+
+    void Nextwave()
+    {
+        waveTimer = 0;
+        currentWave = (currentWave + 1) % waves.Count; 
+        enemyFactory.GenerateEnemies(waves[currentWave].NbEnemies);        
+    }
+
 
     void FixedUpdate()
     {

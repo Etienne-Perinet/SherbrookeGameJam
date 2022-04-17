@@ -436,21 +436,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6068187392579199654, guid: b182a43fae18a2a4fb0e57612d022a01, type: 3}
-      propertyPath: enemiesType.Array.size
-      value: 3
+      propertyPath: waves.Array.size
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6068187392579199654, guid: b182a43fae18a2a4fb0e57612d022a01, type: 3}
-      propertyPath: enemiesType.Array.data[0]
-      value: 
-      objectReference: {fileID: 2246748386601214517, guid: 970ba45ba63d04f49b08e3824a6575d3, type: 3}
-    - target: {fileID: 6068187392579199654, guid: b182a43fae18a2a4fb0e57612d022a01, type: 3}
-      propertyPath: enemiesType.Array.data[1]
-      value: 
-      objectReference: {fileID: 7507134723547207384, guid: 6d16da6939364f74cbf3e0441aaa250a, type: 3}
-    - target: {fileID: 6068187392579199654, guid: b182a43fae18a2a4fb0e57612d022a01, type: 3}
-      propertyPath: enemiesType.Array.data[2]
-      value: 
-      objectReference: {fileID: 6775578803265522924, guid: 7776fd347df61474e8bd30f647421ebc, type: 3}
     - target: {fileID: 9222688913029514041, guid: b182a43fae18a2a4fb0e57612d022a01, type: 3}
       propertyPath: endGameOverlay
       value: 
