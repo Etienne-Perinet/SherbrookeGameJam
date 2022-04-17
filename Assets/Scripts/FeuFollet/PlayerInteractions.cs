@@ -71,14 +71,14 @@ public class PlayerInteractions : MonoBehaviour
             ChangeColor("#"+healthBar.GetColor());
 
             Enemy enemyObject = other.gameObject.GetComponent<Enemy>();
-            HealthBar.Color enemyColor = enemyObject.GetEnemyDamageType();
+            HealthBar.Color enemyColor = enemyObject.EnemyType;
             if(!healthBar.AddColor(enemyColor, enemyObject.GetEnemyCollisionDamage()))
             {
                 Die();
             }
             else
             {
-                lastEnemyColor = other.gameObject.GetComponent<Enemy>().GetEnemyDamageType();
+                lastEnemyColor = other.gameObject.GetComponent<Enemy>().EnemyType;
                 //falseHealthBar--;
             }
         } 
