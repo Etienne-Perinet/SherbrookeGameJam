@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class WaveSpawner : MonoBehaviour
     private int currentWave;
     private GameManager gameManager;
     private GameObject player;
+    private TextMeshProUGUI timerTxt;
     [SerializeField] private List<Enemy> enemiesType;
     [SerializeField] private List<Wave> waves;
 
@@ -16,6 +19,7 @@ public class WaveSpawner : MonoBehaviour
     {
         enemyFactory = new EnemiesFactory(enemiesType);
         player = GameObject.FindGameObjectWithTag("Player");
+        timerTxt = GameObject.FindGameObjectWithTag("WaveTimer").GetComponent<TextMeshProUGUI>();
         gameManager = gameObject.GetComponent<GameManager>();
     }
 
@@ -34,12 +38,14 @@ public class WaveSpawner : MonoBehaviour
         {
             if(!enemyFactory.IsEmpty())
                 SpawnEnemy();
-            else if(waveTimer >= waves[currentWave].WaveTime)
+            else if(waveTimer <= 0)
             {   
                 Nextwave();
             }
         }
     }
+
+
 
     void CreateWaves()
     {
@@ -55,13 +61,35 @@ public class WaveSpawner : MonoBehaviour
     {
         waveTimer = 0;
         currentWave = (currentWave + 1) % waves.Count; 
-        enemyFactory.GenerateEnemies(waves[currentWave].NbEnemies);        
+        enemyFactory.GenerateEnemies(waves[currentWave].NbEnemies);   
+        StartCoroutine(StartCountdown(waves[currentWave].WaveTime));
     }
 
 
-    void FixedUpdate()
+    // void FixedUpdate()
+    // {
+    //     waveTimer += Time.deltaTime; 
+    // }
+
+    public IEnumerator StartCountdown(float countdownValue)
     {
-        waveTimer += Time.deltaTime; 
+        waveTimer = countdownValue;
+        while (waveTimer > 0)
+        {
+            Debug.Log("Countdown: " + waveTimer);
+            yield return new WaitForSeconds(1.0f);
+            waveTimer--;
+            DisplayTime(waveTimer);
+
+        }
+        
+    }
+
+    void DisplayTime(float time)
+    {
+        float minutes = Mathf.FloorToInt(time / 60);  
+        float seconds = Mathf.FloorToInt(time % 60);
+        timerTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     void SpawnEnemy()
