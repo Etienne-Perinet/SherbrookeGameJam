@@ -14,14 +14,12 @@ public abstract class Enemy : MonoBehaviour
 
     [field: SerializeField] public GameObject Prefab { get; protected set; }
 
-    public int Damage { get; protected set; } 
-
     public int Cost 
     {
-        get { return health * CollisionDamage * (int)speed; }
+        get { return CollisionDamage * (int) speed; }
     }
+
     public HealthBar.Color EnemyType { get; protected set;}
-    protected float collisionDamage = 1f;
 
     protected virtual void Awake()
     {

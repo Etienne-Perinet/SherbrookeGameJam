@@ -5,32 +5,29 @@ using UnityEngine;
 public class EnemiesFactory 
 {
     private Queue<Enemy> enemiesToSpawn;
-    private List<Enemy> enemies;
+    private List<Enemy> enemiesType;
 
     public EnemiesFactory(List<Enemy> enemiesOptions) 
     {
-        enemies = enemiesOptions;
+        enemiesType = enemiesOptions;
         enemiesToSpawn = new Queue<Enemy>();
     }
 
-    public void GenerateEnemies(int cost)
+    public void GenerateEnemies(int nbEnemies)
     {
         Queue<Enemy> generatedEnemies = new Queue<Enemy>();
-        while(cost > 0)
-        {
-            int randIndex = Random.Range(0, enemies.Count);
-            int randCost = Random.Range(0, enemies[randIndex].Cost);
-            Debug.Log("Rand cost " + randCost + " " + enemies[randIndex].Prefab.name);
-
-            if(cost - randCost >= 0)
-            {
-                generatedEnemies.Enqueue(enemies[randIndex]);
-                cost -= randCost;
-            }
-        }
+        
+        for(int i = 0; i < enemiesType.Count; i++)
+            AddEnemies(generatedEnemies, enemiesType[i], Random.Range(1, nbEnemies));
 
         enemiesToSpawn.Clear();
         enemiesToSpawn = generatedEnemies;
+    }
+
+    void AddEnemies(Queue<Enemy> enemies, Enemy enemyPrefab, int number)
+    {
+        for(int i = 0; i < number; i++)
+            enemies.Enqueue(enemyPrefab);
     }
 
     public bool IsEmpty() => enemiesToSpawn.Count <= 0; 

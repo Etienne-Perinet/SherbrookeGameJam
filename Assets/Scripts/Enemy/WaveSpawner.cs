@@ -25,7 +25,7 @@ public class WaveSpawner : MonoBehaviour
     {
         currentWave = 0;
         waveTimer = 0f;
-        enemyFactory.GenerateEnemies(50);
+        enemyFactory.GenerateEnemies(3);
     }
 
     void Update()
@@ -37,7 +37,7 @@ public class WaveSpawner : MonoBehaviour
             else if(waveTimer >= 7)
             {
                 waveTimer = 0;
-                enemyFactory.GenerateEnemies(40);        
+                enemyFactory.GenerateEnemies(10);        
             }
         }
     }
@@ -53,7 +53,6 @@ public class WaveSpawner : MonoBehaviour
         gameManager.SpawnEnemy(nextEnemy.EnemyType);
         
         Instantiate(nextEnemy, RandomPos(), Quaternion.identity);
-        
     }
 
     protected Vector3 RandomPos() 
