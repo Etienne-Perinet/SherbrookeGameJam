@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -23,20 +21,20 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Awake()
     {
-        Debug.Log("Starting enemy spawn");
-        
-        target = GameObject.Find("FeuFollet").GetComponent<Transform>();
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+    }
+
+    protected virtual void Update()
+    {
+        Move(speed);
     }
 
     protected virtual void Die() 
     {
-        //Debug.Log("Dieee");
         FindObjectOfType<PlayerInteractions>().AddPoints(Cost);
         FindObjectOfType<GameManager>().DecrementEnemyCount(EnemyType);
         Destroy(gameObject);
     }
-
-    protected virtual void Shoot() {}
 
     protected virtual void OnCollisionEnter2D(Collision2D other) 
     {
@@ -60,15 +58,4 @@ public abstract class Enemy : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
     }
-
-    public float GetEnemyCollisionDamage()
-    {
-        return CollisionDamage;
-    }
-
-    protected virtual void Update()
-    {
-        Move(speed);
-    }
-
 }

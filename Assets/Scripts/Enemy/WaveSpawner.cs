@@ -23,11 +23,8 @@ public class WaveSpawner : MonoBehaviour
         gameManager = gameObject.GetComponent<GameManager>();
     }
 
-
     void Start() 
     {
-        currentWave = 0;
-        waveTimer = 0f;
         CreateWaves();
         enemyFactory.GenerateEnemies(waves[currentWave].NbEnemies);
     }
@@ -39,13 +36,9 @@ public class WaveSpawner : MonoBehaviour
             if(!enemyFactory.IsEmpty())
                 SpawnEnemy();
             else if(waveTimer <= 0)
-            {   
                 Nextwave();
-            }
         }
     }
-
-
 
     void CreateWaves()
     {
@@ -65,30 +58,21 @@ public class WaveSpawner : MonoBehaviour
         StartCoroutine(StartCountdown(waves[currentWave].WaveTime));
     }
 
-
-    // void FixedUpdate()
-    // {
-    //     waveTimer += Time.deltaTime; 
-    // }
-
     public IEnumerator StartCountdown(float countdownValue)
     {
         waveTimer = countdownValue;
         while (waveTimer > 0)
         {
-            Debug.Log("Countdown: " + waveTimer);
             yield return new WaitForSeconds(1.0f);
             waveTimer--;
             DisplayTime(waveTimer);
-
         }
-        
     }
 
     void DisplayTime(float time)
     {
         float minutes = Mathf.FloorToInt(time / 60);  
-        float seconds = Mathf.FloorToInt(time % 60);
+        float seconds = time - (minutes * 60);
         timerTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 

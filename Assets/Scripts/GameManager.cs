@@ -18,9 +18,8 @@ public class GameManager : MonoBehaviour
     void Awake() 
     {
         if (instance == null)
-        instance = this;
+            instance = this;
 
-        
         spawns.Add(HealthBar.Color.RED, 0);
         spawns.Add(HealthBar.Color.BLUE, 0);
         spawns.Add(HealthBar.Color.GREEN, 0);
@@ -28,8 +27,6 @@ public class GameManager : MonoBehaviour
         ratios.Add(HealthBar.Color.RED, 0f);
         ratios.Add(HealthBar.Color.BLUE, 0f);
         ratios.Add(HealthBar.Color.GREEN, 0f);
-
-        Debug.Log("Awake");
     }
 
     void Start() 
@@ -84,8 +81,6 @@ public class GameManager : MonoBehaviour
         ratios[HealthBar.Color.RED] = (float)spawns[HealthBar.Color.RED]/total;
         ratios[HealthBar.Color.GREEN] = (float)spawns[HealthBar.Color.GREEN]/total;      
     }
-
-    
 
     public void StartGame()
     {

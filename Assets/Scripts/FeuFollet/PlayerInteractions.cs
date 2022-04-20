@@ -15,11 +15,6 @@ public class PlayerInteractions : MonoBehaviour
     private int playerPoints;
     public TextMeshProUGUI pointsUI;
 
-    private void Awake()
-    {
-        playerPoints = 0;
-    }
-
     void Update()
     {
         if(pointsUI != null)
@@ -72,14 +67,13 @@ public class PlayerInteractions : MonoBehaviour
 
             Enemy enemyObject = other.gameObject.GetComponent<Enemy>();
             HealthBar.Color enemyColor = enemyObject.EnemyType;
-            if(!healthBar.AddColor(enemyColor, enemyObject.GetEnemyCollisionDamage()))
+            if(!healthBar.AddColor(enemyColor, enemyObject.CollisionDamage))
             {
                 Die();
             }
             else
             {
                 lastEnemyColor = other.gameObject.GetComponent<Enemy>().EnemyType;
-                //falseHealthBar--;
             }
         } 
         //if(healthBar.IsDead() || falseHealthBar < 1)
