@@ -6,6 +6,6 @@ public class GreenEnemy : Enemy
 {
     void Start()
     {
-        enemyType = HealthBar.Color.GREEN;
+        EnemyType = HealthBar.Color.GREEN;
     }
 }
