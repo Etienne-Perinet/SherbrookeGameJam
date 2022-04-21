@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject player;
 
-    Dictionary<HealthBar.Color, int> spawns = new Dictionary<HealthBar.Color, int>();
-    Dictionary<HealthBar.Color, float> ratios = new Dictionary<HealthBar.Color, float>();
+    Dictionary<HealthBarColor, int> spawns = new Dictionary<HealthBarColor, int>();
+    Dictionary<HealthBarColor, float> ratios = new Dictionary<HealthBarColor, float>();
 
     private AudioManager am;
     
@@ -27,13 +27,13 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("FeuFollet");
         enemyFactory = new EnemiesFactory(enemies);
         
-        spawns.Add(HealthBar.Color.RED, 0);
-        spawns.Add(HealthBar.Color.BLUE, 0);
-        spawns.Add(HealthBar.Color.GREEN, 0);
+        spawns.Add(HealthBarColor.RED, 0);
+        spawns.Add(HealthBarColor.BLUE, 0);
+        spawns.Add(HealthBarColor.GREEN, 0);
 
-        ratios.Add(HealthBar.Color.RED, 0f);
-        ratios.Add(HealthBar.Color.BLUE, 0f);
-        ratios.Add(HealthBar.Color.GREEN, 0f);
+        ratios.Add(HealthBarColor.RED, 0f);
+        ratios.Add(HealthBarColor.BLUE, 0f);
+        ratios.Add(HealthBarColor.GREEN, 0f);
 
         Debug.Log("Awake");
     }
@@ -97,17 +97,17 @@ public class GameManager : MonoBehaviour
 
     private void UpdateMainTheme()
     {
-        //Debug.Log("UPDATING WITH RED : " + spawns[HealthBar.Color.RED]);
-        //Debug.Log("UPDATING WITH BLUE : " + spawns[HealthBar.Color.BLUE]);
-        am.setSoundVolume("StemRed", ratios[HealthBar.Color.RED]);
-        am.setSoundVolume("StemGreen", ratios[HealthBar.Color.GREEN]);
-        am.setSoundVolume("StemBlue", ratios[HealthBar.Color.BLUE]);
+        //Debug.Log("UPDATING WITH RED : " + spawns[HealthBarColor.RED]);
+        //Debug.Log("UPDATING WITH BLUE : " + spawns[HealthBarColor.BLUE]);
+        am.setSoundVolume("StemRed", ratios[HealthBarColor.RED]);
+        am.setSoundVolume("StemGreen", ratios[HealthBarColor.GREEN]);
+        am.setSoundVolume("StemBlue", ratios[HealthBarColor.BLUE]);
         Debug.Log("RED VOLUME : " + am.getSoundVolume("StemRed"));
         Debug.Log("BLUE VOLUME : " + am.getSoundVolume("StemBlue"));
         Debug.Log("GREEN VOLUME : " + am.getSoundVolume("StemGreen"));
     }
 
-    public void DecrementEnemyCount(HealthBar.Color enemyType)
+    public void DecrementEnemyCount(HealthBarColor enemyType)
     {
         spawns[enemyType]--;
         CalculateRatios();
@@ -116,13 +116,13 @@ public class GameManager : MonoBehaviour
 
     private void CalculateRatios()
     { 
-        float total = spawns[HealthBar.Color.BLUE] + spawns[HealthBar.Color.RED] + spawns[HealthBar.Color.GREEN];
+        float total = spawns[HealthBarColor.BLUE] + spawns[HealthBarColor.RED] + spawns[HealthBarColor.GREEN];
         //Debug.Log("TOTAL ENEMIES : " + total);
         if(total == 0f)
             return;
-        ratios[HealthBar.Color.BLUE] = (float)spawns[HealthBar.Color.BLUE]/total;
-        ratios[HealthBar.Color.RED] = (float)spawns[HealthBar.Color.RED]/total;
-        ratios[HealthBar.Color.GREEN] = (float)spawns[HealthBar.Color.GREEN]/total;      
+        ratios[HealthBarColor.BLUE] = (float)spawns[HealthBarColor.BLUE]/total;
+        ratios[HealthBarColor.RED] = (float)spawns[HealthBarColor.RED]/total;
+        ratios[HealthBarColor.GREEN] = (float)spawns[HealthBarColor.GREEN]/total;      
     }
 
     protected Vector3 RandomPos() 

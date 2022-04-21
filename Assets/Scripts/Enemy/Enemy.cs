@@ -20,7 +20,7 @@ public abstract class Enemy : MonoBehaviour
     {
         get { return health * CollisionDamage * (int)speed; }
     }
-    protected HealthBar.Color enemyType;
+    protected HealthBarColor enemyType;
     protected float collisionDamage = 1f;
 
     protected virtual void Awake()
@@ -32,8 +32,6 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Die() 
     {
-        //Debug.Log("Dieee");
-        FindObjectOfType<PlayerInteractions>().AddPoints(Cost);
         FindObjectOfType<GameManager>().DecrementEnemyCount(enemyType);
         Destroy(gameObject);
     }
@@ -63,7 +61,7 @@ public abstract class Enemy : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
     }
 
-    public HealthBar.Color GetEnemyDamageType()
+    public HealthBarColor GetEnemyDamageType()
     {
         return enemyType;
     }
