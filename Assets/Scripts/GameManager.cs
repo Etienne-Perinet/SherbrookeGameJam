@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string restartScene;
     [SerializeField] private GameObject endGameOverlay;
 
-    Dictionary<HealthBar.Color, int> spawns = new Dictionary<HealthBar.Color, int>();
-    Dictionary<HealthBar.Color, float> ratios = new Dictionary<HealthBar.Color, float>();
+    Dictionary<HealthBarColor, int> spawns = new Dictionary<HealthBarColor, int>();
+    Dictionary<HealthBarColor, float> ratios = new Dictionary<HealthBarColor, float>();
 
     private AudioManager am;
     
@@ -20,13 +20,13 @@ public class GameManager : MonoBehaviour
         if (instance == null)
             instance = this;
 
-        spawns.Add(HealthBar.Color.RED, 0);
-        spawns.Add(HealthBar.Color.BLUE, 0);
-        spawns.Add(HealthBar.Color.GREEN, 0);
+        spawns.Add(HealthBarColor.RED, 0);
+        spawns.Add(HealthBarColor.BLUE, 0);
+        spawns.Add(HealthBarColor.GREEN, 0);
 
-        ratios.Add(HealthBar.Color.RED, 0f);
-        ratios.Add(HealthBar.Color.BLUE, 0f);
-        ratios.Add(HealthBar.Color.GREEN, 0f);
+        ratios.Add(HealthBarColor.RED, 0f);
+        ratios.Add(HealthBarColor.BLUE, 0f);
+        ratios.Add(HealthBarColor.GREEN, 0f);
     }
 
     void Start() 
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         am.setSoundVolume("StemBlue", 0f);
     }    
 
-    public void SpawnEnemy(HealthBar.Color enemyType)
+    public void SpawnEnemy(HealthBarColor enemyType)
     {
         spawns[enemyType] += 1;
         
@@ -60,12 +60,12 @@ public class GameManager : MonoBehaviour
 
     private void UpdateMainTheme()
     {
-        am.setSoundVolume("StemRed", ratios[HealthBar.Color.RED]);
-        am.setSoundVolume("StemGreen", ratios[HealthBar.Color.GREEN]);
-        am.setSoundVolume("StemBlue", ratios[HealthBar.Color.BLUE]);
+        am.setSoundVolume("StemRed", ratios[HealthBarColor.RED]);
+        am.setSoundVolume("StemGreen", ratios[HealthBarColor.GREEN]);
+        am.setSoundVolume("StemBlue", ratios[HealthBarColor.BLUE]);
     }
 
-    public void DecrementEnemyCount(HealthBar.Color enemyType)
+    public void DecrementEnemyCount(HealthBarColor enemyType)
     {
         spawns[enemyType]--;
         CalculateRatios();
@@ -74,12 +74,13 @@ public class GameManager : MonoBehaviour
 
     private void CalculateRatios()
     { 
-        float total = spawns[HealthBar.Color.BLUE] + spawns[HealthBar.Color.RED] + spawns[HealthBar.Color.GREEN];
+        float total = spawns[HealthBarColor.BLUE] + spawns[HealthBarColor.RED] + spawns[HealthBarColor.GREEN];
+
         if(total == 0f)
             return;
-        ratios[HealthBar.Color.BLUE] = (float)spawns[HealthBar.Color.BLUE]/total;
-        ratios[HealthBar.Color.RED] = (float)spawns[HealthBar.Color.RED]/total;
-        ratios[HealthBar.Color.GREEN] = (float)spawns[HealthBar.Color.GREEN]/total;      
+        ratios[HealthBarColor.BLUE] = (float)spawns[HealthBarColor.BLUE]/total;
+        ratios[HealthBarColor.RED] = (float)spawns[HealthBarColor.RED]/total;
+        ratios[HealthBarColor.GREEN] = (float)spawns[HealthBarColor.GREEN]/total;      
     }
 
     public void StartGame()

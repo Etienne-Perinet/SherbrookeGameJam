@@ -16,8 +16,7 @@ public abstract class Enemy : MonoBehaviour
     {
         get { return CollisionDamage * (int) speed; }
     }
-
-    public HealthBar.Color EnemyType { get; protected set;}
+    public HealthBarColor enemyType { get; protected set; }
 
     protected virtual void Awake()
     {
@@ -31,8 +30,8 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Die() 
     {
-        FindObjectOfType<PlayerInteractions>().AddPoints(Cost);
-        FindObjectOfType<GameManager>().DecrementEnemyCount(EnemyType);
+        FindObjectOfType<GameManager>().DecrementEnemyCount(enemyType);
+        
         Destroy(gameObject);
     }
 
