@@ -35,12 +35,9 @@ public class HealthBar : MonoBehaviour
 
     private Color GetColor()
     {
-      Debug.Log(redSlope + ", " + greenSlope + ", " + blueSlope);
-
       float r = rgbMax - (redSlope * step);
       float g = rgbMax - (greenSlope * step);
       float b = rgbMax - (blueSlope * step);
-
 
       return new Color(r/rgbMax, g/rgbMax, b/rgbMax);
     }
@@ -110,7 +107,8 @@ public class HealthBar : MonoBehaviour
     }
   }
 
-  private void Start() {
+  private void Start() 
+  {
     SpriteRenderer healthBarSprite = GetComponent<SpriteRenderer>();
 
     ratio = healthBarSprite.bounds.size;
@@ -159,7 +157,10 @@ public class HealthBar : MonoBehaviour
     cursor.localPosition = newPos;
     cursor.position = (Vector2)cursor.position + initialPos;
 
-    return new HealthBarResponse(colors.AppendColor(color, val / 4), !IsPointInTriangle(newPos + initialPos));
+    return new HealthBarResponse(
+      colors.AppendColor(color, val / 4), 
+      !IsPointInTriangle(newPos + initialPos)
+    );
   }
 
   private Vector2 Centroid()
