@@ -1,23 +1,7 @@
 using UnityEngine;
 
-public enum HealthBarColor { RED, GREEN, BLUE };
-
-public class HealthBarResponse
-{
-  public Color color { get; }
-
-  public bool isEnd { get; }
-
-  public HealthBarResponse(Color color, bool isEnd)
-  {
-    this.color = color;
-    this.isEnd = isEnd;
-  }
-}
-
 public class HealthBar : MonoBehaviour
 {
-
   [SerializeField] private byte health;
   [SerializeField] private Transform cursor;
 
@@ -34,14 +18,13 @@ public class HealthBar : MonoBehaviour
 
   private Vector2[] vertexs;
 
-  [SerializeField] private ColorsVec colors;
+  private ColorsVec colors;
 
   private class ColorsVec
   {
-    [SerializeField] private float redSlope;
-    [SerializeField] private float greenSlope;
-    [SerializeField] private float blueSlope;
-
+    private float redSlope;
+    private float greenSlope;
+    private float blueSlope;
     private float step;
     private const byte rgbMax = 255;
 
@@ -139,6 +122,9 @@ public class HealthBar : MonoBehaviour
 
     ratioYAxisTop = ratio.y/2 - initialPos.y;
     ratioYAxisBottom = ratio.y - ratioYAxisTop;
+
+    cursor.localPosition = new Vector2();
+    cursor.position = (Vector2)cursor.position + initialPos;
 
     vertexs = new Vector2[] {  
       new Vector2(ratio.x, -ratio.y),
