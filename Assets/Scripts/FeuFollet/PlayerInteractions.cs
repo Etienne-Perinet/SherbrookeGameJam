@@ -31,7 +31,7 @@ public class PlayerInteractions : MonoBehaviour
 
             Enemy enemyObject = other.gameObject.GetComponent<Enemy>();
 
-            HealthBarColor enemyColor = enemyObject.GetEnemyDamageType(); 
+            HealthBarColor enemyColor = enemyObject.enemyType; 
             HealthBarResponse response = healthBar.AddColor(enemyColor, enemyObject.CollisionDamage);
 
             ChangeColor(response.color);

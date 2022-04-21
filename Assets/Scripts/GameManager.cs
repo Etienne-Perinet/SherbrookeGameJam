@@ -20,13 +20,13 @@ public class GameManager : MonoBehaviour
         if (instance == null)
             instance = this;
 
-        spawns.Add(HealthBar.Color.RED, 0);
-        spawns.Add(HealthBar.Color.BLUE, 0);
-        spawns.Add(HealthBar.Color.GREEN, 0);
+        spawns.Add(HealthBarColor.RED, 0);
+        spawns.Add(HealthBarColor.BLUE, 0);
+        spawns.Add(HealthBarColor.GREEN, 0);
 
-        ratios.Add(HealthBar.Color.RED, 0f);
-        ratios.Add(HealthBar.Color.BLUE, 0f);
-        ratios.Add(HealthBar.Color.GREEN, 0f);
+        ratios.Add(HealthBarColor.RED, 0f);
+        ratios.Add(HealthBarColor.BLUE, 0f);
+        ratios.Add(HealthBarColor.GREEN, 0f);
     }
 
     void Start() 
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         am.setSoundVolume("StemBlue", 0f);
     }    
 
-    public void SpawnEnemy(HealthBar.Color enemyType)
+    public void SpawnEnemy(HealthBarColor enemyType)
     {
         spawns[enemyType] += 1;
         
@@ -60,9 +60,9 @@ public class GameManager : MonoBehaviour
 
     private void UpdateMainTheme()
     {
-        am.setSoundVolume("StemRed", ratios[HealthBar.Color.RED]);
-        am.setSoundVolume("StemGreen", ratios[HealthBar.Color.GREEN]);
-        am.setSoundVolume("StemBlue", ratios[HealthBar.Color.BLUE]);
+        am.setSoundVolume("StemRed", ratios[HealthBarColor.RED]);
+        am.setSoundVolume("StemGreen", ratios[HealthBarColor.GREEN]);
+        am.setSoundVolume("StemBlue", ratios[HealthBarColor.BLUE]);
     }
 
     public void DecrementEnemyCount(HealthBarColor enemyType)
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
 
     private void CalculateRatios()
     { 
-        float total = spawns[HealthBar.Color.BLUE] + spawns[HealthBar.Color.RED] + spawns[HealthBar.Color.GREEN];
+        float total = spawns[HealthBarColor.BLUE] + spawns[HealthBarColor.RED] + spawns[HealthBarColor.GREEN];
 
         if(total == 0f)
             return;

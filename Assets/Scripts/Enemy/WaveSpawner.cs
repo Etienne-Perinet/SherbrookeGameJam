@@ -79,7 +79,7 @@ public class WaveSpawner : MonoBehaviour
     void SpawnEnemy()
     {
         Enemy nextEnemy = enemyFactory.NextEnemy();
-        gameManager.SpawnEnemy(nextEnemy.EnemyType);
+        gameManager.SpawnEnemy(nextEnemy.enemyType);
         
         Instantiate(nextEnemy, RandomPos(), Quaternion.identity);
     }

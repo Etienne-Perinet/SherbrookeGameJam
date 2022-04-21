@@ -16,7 +16,7 @@ public abstract class Enemy : MonoBehaviour
     {
         get { return CollisionDamage * (int) speed; }
     }
-    protected HealthBarColor enemyType { get; protected set; }
+    public HealthBarColor enemyType { get; protected set; }
 
     protected virtual void Awake()
     {
