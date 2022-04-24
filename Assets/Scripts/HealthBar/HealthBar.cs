@@ -154,12 +154,17 @@ public class HealthBar : MonoBehaviour
 
     Vector2 newPos = Centroid();
 
-    cursor.localPosition = newPos;
-    cursor.position = (Vector2)cursor.position + initialPos;
+    bool isEnd = !IsPointInTriangle(newPos + initialPos);
+
+    if (!isEnd)
+    {
+      cursor.localPosition = newPos;
+      cursor.position = (Vector2)cursor.position + initialPos;
+    }
 
     return new HealthBarResponse(
       colors.AppendColor(color, val / 4), 
-      !IsPointInTriangle(newPos + initialPos)
+      isEnd
     );
   }
 
