@@ -3,8 +3,10 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] private float speed = 2f;
-    [SerializeField] protected int health = 1;
+    public float speed = 2f;
+    protected float maxSpeed = 4f;
+    protected int health = 1;
+    
     
     protected Transform target;
     private GameManager gameManager;
@@ -54,5 +56,11 @@ public abstract class Enemy : MonoBehaviour
     private void Move(float _speed) 
     {
         transform.position = Vector2.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
+    }
+
+    public void IncreaseCost(float gameTimer)
+    {
+        if(speed < maxSpeed)
+            speed += speed * (((float) Mathf.Pow(1.28f, 0.05f*gameTimer) + 1) / 100);
     }
 }

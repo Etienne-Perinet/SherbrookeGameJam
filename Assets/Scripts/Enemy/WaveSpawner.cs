@@ -8,6 +8,7 @@ public class WaveSpawner : MonoBehaviour
 {
     private EnemiesFactory enemyFactory;
     private float waveTimer;
+    private float gameTimer;
     private int currentWave;
     private int waveCount;
     private GameManager gameManager;
@@ -42,6 +43,7 @@ public class WaveSpawner : MonoBehaviour
             else if(waveTimer <= 0)
                 Nextwave();
         }
+        gameTimer += Time.deltaTime;
     }
 
     void CreateWaves()
@@ -59,6 +61,7 @@ public class WaveSpawner : MonoBehaviour
         waveTimer = 0;
         IncrementWaveCount();
         currentWave = (currentWave + 1) % waves.Count; 
+        enemyFactory.IncreaseCost(gameTimer);
         enemyFactory.GenerateEnemies(waves[currentWave].NbEnemies);   
         StartCoroutine(StartCountdown(waves[currentWave].WaveTime));
     }
