@@ -191,11 +191,13 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1232113748}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8822555298747739276, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
+    - {fileID: 707352784, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
---- !u!114 &707352784 stripped
+--- !u!114 &707352782 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 707352784, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5334722656996819766, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
   m_PrefabInstance: {fileID: 707352781}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -344,7 +346,7 @@ PrefabInstance:
     - target: {fileID: 1922093652500733741, guid: 3bcedb26cd32dd64ab294bbafaad6d50, type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 707352784}
+      objectReference: {fileID: 707352782}
     - target: {fileID: 4581650515868807343, guid: 3bcedb26cd32dd64ab294bbafaad6d50, type: 3}
       propertyPath: cam
       value: 
