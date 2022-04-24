@@ -413,10 +413,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6068187392579199654, guid: b182a43fae18a2a4fb0e57612d022a01, type: 3}
-      propertyPath: waves.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9222688913029514041, guid: b182a43fae18a2a4fb0e57612d022a01, type: 3}
       propertyPath: endGameOverlay
       value: 
