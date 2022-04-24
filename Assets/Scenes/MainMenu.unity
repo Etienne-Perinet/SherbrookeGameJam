@@ -3270,7 +3270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35988aa17c09ead4f91550a6b9575d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartScene: PointsTest
+  restartScene: EnemyScene
 --- !u!4 &342322960
 Transform:
   m_ObjectHideFlags: 0
@@ -5574,6 +5574,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8637769078679701826, guid: cc714aa59dde88e4d8d3b6299b45199c, type: 3}
       propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8637769078679701826, guid: cc714aa59dde88e4d8d3b6299b45199c, type: 3}
+      propertyPath: m_TagString
       value: AudioManager
       objectReference: {fileID: 0}
     - target: {fileID: 8637769078679701836, guid: cc714aa59dde88e4d8d3b6299b45199c, type: 3}
