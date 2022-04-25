@@ -14,8 +14,8 @@ public class WaveSpawner : MonoBehaviour
     private GameObject player;
     private TextMeshProUGUI timerTxt;
     private TextMeshProUGUI waveCountTxt;
+    private List<Wave> waves;
     [SerializeField] private List<Enemy> enemiesType;
-    [SerializeField] private List<Wave> waves;
 
     void Awake()
     {
