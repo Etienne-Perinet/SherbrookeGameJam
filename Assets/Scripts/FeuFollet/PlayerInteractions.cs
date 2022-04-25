@@ -5,12 +5,21 @@ using TMPro;
 
 public class PlayerInteractions : MonoBehaviour
 {
-    [SerializeField] private HealthBar healthBar;
+    private HealthBar healthBar;
+    private GameManager gameManager;
+    private AudioManager audioManager;
+
+    private void Awake() 
+    {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        healthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<HealthBar>();
+    }
 
     private void Die() 
     {
         gameObject.SetActive(false);   
-        FindObjectOfType<GameManager>().EndGame();
+        gameManager.EndGame();
     }
 
     private void ChangeColor(Color color) 
@@ -24,19 +33,16 @@ public class PlayerInteractions : MonoBehaviour
         {
             if(gameObject.GetComponent<AudioManager>() == null)
             {
-                FindObjectOfType<AudioManager>().AttributeAudioSource("DamageSound", gameObject.AddComponent<AudioSource>());
+                audioManager.AttributeAudioSource("DamageSound", gameObject.AddComponent<AudioSource>());
             }
 
-            FindObjectOfType<AudioManager>().Play("DamageSound");
+            audioManager.Play("DamageSound");
 
             Enemy enemyObject = other.gameObject.GetComponent<Enemy>();
+            HealthBarResponse response = healthBar.AddColor(enemyObject.EnemyType, enemyObject.CollisionDamage);
+            ChangeColor(response.BarColor);
 
-            HealthBarColor enemyColor = enemyObject.enemyType; 
-            HealthBarResponse response = healthBar.AddColor(enemyColor, enemyObject.CollisionDamage);
-
-            ChangeColor(response.color);
-
-            if (response.isEnd) 
+            if (response.IsEnd) 
             {
                 Die();
             }

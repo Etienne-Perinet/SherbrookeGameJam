@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6068187392579199654}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,4 +62,6 @@ MonoBehaviour:
   - {fileID: 2246748386601214517, guid: 970ba45ba63d04f49b08e3824a6575d3, type: 3}
   - {fileID: 7507134723547207384, guid: 6d16da6939364f74cbf3e0441aaa250a, type: 3}
   - {fileID: 6775578803265522924, guid: 7776fd347df61474e8bd30f647421ebc, type: 3}
-  waves: []
+  waves:
+  - <NbEnemies>k__BackingField: 0
+    <WaveTime>k__BackingField: 0

@@ -6,6 +6,6 @@ public class RedEnemy : Enemy
 {
     void Start()
     {
-        enemyType = HealthBarColor.RED;
+        EnemyType = HealthBarColor.RED;
     }
 }

@@ -7,6 +7,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected int health = 1;
     
     protected Transform target;
+    private GameManager gameManager;
     public GameObject deathAnimation;
     [field: SerializeField] public int CollisionDamage { get; protected set; }
 
@@ -16,26 +17,23 @@ public abstract class Enemy : MonoBehaviour
     {
         get { return CollisionDamage * (int) speed; }
     }
-    public HealthBarColor enemyType { get; protected set; }
+    public HealthBarColor EnemyType { get; protected set; }
 
-    protected virtual void Awake()
+    private void Awake()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
-    protected virtual void Update()
-    {
-        Move(speed);
-    }
+    private void Update() => Move(speed);
 
-    protected virtual void Die() 
+    private void Die() 
     {
-        FindObjectOfType<GameManager>().DecrementEnemyCount(enemyType);
-        
+        gameManager.DecrementEnemyCount(EnemyType);
         Destroy(gameObject);
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D other) 
+    private void OnCollisionEnter2D(Collision2D other) 
     {
         if(other.gameObject.CompareTag("PlayerBullet"))
             health--;
@@ -53,7 +51,7 @@ public abstract class Enemy : MonoBehaviour
             Die();
     }
 
-    protected virtual void Move(float _speed) 
+    private void Move(float _speed) 
     {
         transform.position = Vector2.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
     }

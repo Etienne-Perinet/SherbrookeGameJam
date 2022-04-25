@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3038622530772613334}
   - component: {fileID: 3038622530772613337}
-  - component: {fileID: 4850001495019629452}
+  - component: {fileID: 8822555299241735840}
   m_Layer: 0
   m_Name: HealthBarTriangle
-  m_TagString: Untagged
+  m_TagString: HealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,10 +81,10 @@ SpriteRenderer:
   m_Size: {x: 6.02, y: 5.22}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4850001495019629452
+--- !u!114 &8822555299241735840
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,17 +93,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3038622530772613336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83baabfc20433f24b89d684a79036862, type: 3}
+  m_Script: {fileID: 11500000, guid: dcd55757ab643d14ea1ecf18b6f3eb0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 20
-  ratio: {x: 0, y: 0}
-  ratioYAxisTop: 0
-  ratioYAxisBottom: 0
-  dots: []
+  health: 20
   cursor: {fileID: 3038622531187869681}
-  initialPos: {x: 0, y: 0}
-  vertexs: []
 --- !u!1 &3038622531187869683
 GameObject:
   m_ObjectHideFlags: 0
