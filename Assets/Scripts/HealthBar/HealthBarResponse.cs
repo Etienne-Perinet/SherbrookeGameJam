@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class HealthBarResponse
 {
-  public Color color { get; }
+  public Color BarColor { get; }
 
-  public bool isEnd { get; }
+  public bool IsEnd { get; }
 
   public HealthBarResponse(Color color, bool isEnd)
   {
-    this.color = color;
-    this.isEnd = isEnd;
+    this.BarColor = color;
+    this.IsEnd = isEnd;
   }
 }

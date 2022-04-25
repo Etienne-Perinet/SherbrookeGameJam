@@ -7,7 +7,6 @@ public class HealthBar : MonoBehaviour
 
   private Vector2 ratio;
   private float ratioYAxisTop;
-
   private float ratioYAxisBottom;
 
   private Vector2[] dots;

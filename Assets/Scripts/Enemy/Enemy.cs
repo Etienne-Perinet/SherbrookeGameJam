@@ -17,7 +17,7 @@ public abstract class Enemy : MonoBehaviour
     {
         get { return CollisionDamage * (int) speed; }
     }
-    public HealthBarColor enemyType { get; protected set; }
+    public HealthBarColor EnemyType { get; protected set; }
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public abstract class Enemy : MonoBehaviour
 
     private void Die() 
     {
-        gameManager.DecrementEnemyCount(enemyType);
+        gameManager.DecrementEnemyCount(EnemyType);
         Destroy(gameObject);
     }
 
