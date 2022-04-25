@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - PlayerBullet
   - WaveTimer
+  - GameManager
+  - AudioManager
+  - HealthBar
   layers:
   - Default
   - TransparentFX
