@@ -24,6 +24,7 @@ public class WaveSpawner : MonoBehaviour
         timerTxt = GameObject.FindGameObjectWithTag("WaveTimer").GetComponent<TextMeshProUGUI>();
         waveCountTxt = GameObject.FindGameObjectWithTag("WaveCount").GetComponent<TextMeshProUGUI>();
         gameManager = gameObject.GetComponent<GameManager>();
+        waves = new List<Wave>();
     }
 
     void Start() 
