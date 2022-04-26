@@ -3,24 +3,16 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Enemy : MonoBehaviour
 {
-    public float speed = 2f;
+    protected float speed = 2f;
     protected float maxSpeed = 4f;
     protected int health = 1;
     
-    
     protected Transform target;
     private GameManager gameManager;
-    public GameObject deathAnimation;
-    [field: SerializeField] public int CollisionDamage { get; protected set; }
-
-    [field: SerializeField] public GameObject Prefab { get; protected set; }
-
-    public int Cost 
-    {
-        get { return CollisionDamage * (int) speed; }
-    }
+    public int CollisionDamage { get; protected set; }
     public HealthBarColor EnemyType { get; protected set; }
-
+    [field: SerializeField] public GameObject Prefab { get; protected set; }
+  
     private void Awake()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -39,17 +31,7 @@ public abstract class Enemy : MonoBehaviour
     {
         if(other.gameObject.CompareTag("PlayerBullet"))
             health--;
-        else if(other.gameObject.CompareTag("Player"))
-        {
-            if(deathAnimation != null)
-            {
-                GameObject effect = Instantiate(deathAnimation, transform.position, Quaternion.identity);
-                Destroy(effect, 0.4f);
-            }
-            Die();
-        }
-
-        if(health < 1)
+        if(health < 1 || other.gameObject.CompareTag("Player"))
             Die();
     }
 
