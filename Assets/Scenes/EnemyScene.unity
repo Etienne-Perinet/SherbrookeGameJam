@@ -187,10 +187,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3038622530997936884, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
-      propertyPath: m_TagString
-      value: HealthBar
-      objectReference: {fileID: 0}
     - target: {fileID: 7026953275252671723, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
       propertyPath: target
       value: 
@@ -200,6 +196,17 @@ PrefabInstance:
     - {fileID: 707352784, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
     - {fileID: 4850001495062507936, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
+--- !u!114 &707352782 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5334722656996819766, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}
+  m_PrefabInstance: {fileID: 707352781}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd55757ab643d14ea1ecf18b6f3eb0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &887474186 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2294674759519594082, guid: 5fb63cc7498a5424a8f78406010fb85b, type: 3}

@@ -9,18 +9,22 @@ public class WaveSpawner : MonoBehaviour
     private EnemiesFactory enemyFactory;
     private float waveTimer;
     private int currentWave;
+    private int waveCount;
     private GameManager gameManager;
     private GameObject player;
     private TextMeshProUGUI timerTxt;
+    private TextMeshProUGUI waveCountTxt;
+    private List<Wave> waves;
     [SerializeField] private List<Enemy> enemiesType;
-    [SerializeField] private List<Wave> waves;
 
     void Awake()
     {
         enemyFactory = new EnemiesFactory(enemiesType);
         player = GameObject.FindGameObjectWithTag("Player");
         timerTxt = GameObject.FindGameObjectWithTag("WaveTimer").GetComponent<TextMeshProUGUI>();
+        waveCountTxt = GameObject.FindGameObjectWithTag("WaveCount").GetComponent<TextMeshProUGUI>();
         gameManager = gameObject.GetComponent<GameManager>();
+        waves = new List<Wave>();
     }
 
     void Start() 
@@ -53,6 +57,7 @@ public class WaveSpawner : MonoBehaviour
     void Nextwave()
     {
         waveTimer = 0;
+        IncrementWaveCount();
         currentWave = (currentWave + 1) % waves.Count; 
         enemyFactory.GenerateEnemies(waves[currentWave].NbEnemies);   
         StartCoroutine(StartCountdown(waves[currentWave].WaveTime));
@@ -67,6 +72,12 @@ public class WaveSpawner : MonoBehaviour
             waveTimer--;
             DisplayTime(waveTimer);
         }
+    }
+
+    void IncrementWaveCount()
+    {
+        waveCount++;
+        waveCountTxt.text = "Vague " + waveCount.ToString();
     }
 
     void DisplayTime(float time)

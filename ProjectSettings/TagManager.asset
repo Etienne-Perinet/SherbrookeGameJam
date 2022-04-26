@@ -10,6 +10,7 @@ TagManager:
   - GameManager
   - AudioManager
   - HealthBar
+  - WaveCount
   layers:
   - Default
   - TransparentFX
