@@ -83,12 +83,7 @@ public class WaveSpawner : MonoBehaviour
         waveCountTxt.text = "Vague " + waveCount.ToString();
     }
 
-    void DisplayTime(float time)
-    {
-        float minutes = Mathf.FloorToInt(time / 60);  
-        float seconds = time - (minutes * 60);
-        timerTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-    }
+    void DisplayTime(float time) => timerTxt.text = (time % 60).ToString();
 
     void SpawnEnemy()
     {
