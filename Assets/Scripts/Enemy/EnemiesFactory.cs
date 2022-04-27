@@ -38,7 +38,11 @@ public class EnemiesFactory
 
     }
 
-
-
-
+    public void IncreaseCost(float gameTimer)
+    {
+        for(int i = 0; i < enemiesType.Count; i++)
+        {
+            enemiesType[i].IncreaseCost(gameTimer);
+        }
+    }
 }

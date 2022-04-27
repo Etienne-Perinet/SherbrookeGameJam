@@ -8,6 +8,7 @@ public class WaveSpawner : MonoBehaviour
 {
     private EnemiesFactory enemyFactory;
     private float waveTimer;
+    private float gameTimer;
     private int currentWave;
     private int waveCount;
     private GameManager gameManager;
@@ -42,6 +43,7 @@ public class WaveSpawner : MonoBehaviour
             else if(waveTimer <= 0)
                 Nextwave();
         }
+        gameTimer += Time.deltaTime;
     }
 
     void CreateWaves()
@@ -59,6 +61,7 @@ public class WaveSpawner : MonoBehaviour
         waveTimer = 0;
         IncrementWaveCount();
         currentWave = (currentWave + 1) % waves.Count; 
+        enemyFactory.IncreaseCost(gameTimer);
         enemyFactory.GenerateEnemies(waves[currentWave].NbEnemies);   
         StartCoroutine(StartCountdown(waves[currentWave].WaveTime));
     }
@@ -80,12 +83,7 @@ public class WaveSpawner : MonoBehaviour
         waveCountTxt.text = "Vague " + waveCount.ToString();
     }
 
-    void DisplayTime(float time)
-    {
-        float minutes = Mathf.FloorToInt(time / 60);  
-        float seconds = time - (minutes * 60);
-        timerTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-    }
+    void DisplayTime(float time) => timerTxt.text = (time % 60).ToString();
 
     void SpawnEnemy()
     {

@@ -3,22 +3,16 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] private float speed = 2f;
-    [SerializeField] protected int health = 1;
+    protected float speed = 2f;
+    protected float maxSpeed = 4f;
+    protected int health = 1;
     
     protected Transform target;
     private GameManager gameManager;
-    public GameObject deathAnimation;
-    [field: SerializeField] public int CollisionDamage { get; protected set; }
-
-    [field: SerializeField] public GameObject Prefab { get; protected set; }
-
-    public int Cost 
-    {
-        get { return CollisionDamage * (int) speed; }
-    }
+    public int CollisionDamage { get; protected set; }
     public HealthBarColor EnemyType { get; protected set; }
-
+    [field: SerializeField] public GameObject Prefab { get; protected set; }
+  
     private void Awake()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -37,22 +31,18 @@ public abstract class Enemy : MonoBehaviour
     {
         if(other.gameObject.CompareTag("PlayerBullet"))
             health--;
-        else if(other.gameObject.CompareTag("Player"))
-        {
-            if(deathAnimation != null)
-            {
-                GameObject effect = Instantiate(deathAnimation, transform.position, Quaternion.identity);
-                Destroy(effect, 0.4f);
-            }
-            Die();
-        }
-
-        if(health < 1)
+        if(health < 1 || other.gameObject.CompareTag("Player"))
             Die();
     }
 
     private void Move(float _speed) 
     {
         transform.position = Vector2.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
+    }
+
+    public void IncreaseCost(float gameTimer)
+    {
+        if(speed < maxSpeed)
+            speed += speed * (((float) Mathf.Pow(1.28f, 0.05f*gameTimer) + 1) / 100);
     }
 }
