@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1922093652500733741}
   - component: {fileID: 4581650515868807343}
   - component: {fileID: 7252120788671377761}
+  - component: {fileID: 6112682597823929894}
   m_Layer: 6
   m_Name: FeuFollet
   m_TagString: Player
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ffe07ad250e05904f9b9c55b797ebeeb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8a6a985a11b9fed459f6981d7b42f219, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -174,9 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00634fbcbb0e9ab43b034917c113a3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  rb: {fileID: 565854060559499055}
-  pointsUI: {fileID: 0}
 --- !u!114 &4581650515868807343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +205,25 @@ MonoBehaviour:
   firePoint: {fileID: 565854060817208321}
   bulletPrefab: {fileID: 7331236671883018794, guid: d9a5938c9bf371e4d81f1c2fc200a3bf, type: 3}
   bulletForce: 20
+--- !u!95 &6112682597823929894
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565854060559499053}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 69507a271d19c4f4f985c2bf01c1a312, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &565854060817208320
 GameObject:
   m_ObjectHideFlags: 0
