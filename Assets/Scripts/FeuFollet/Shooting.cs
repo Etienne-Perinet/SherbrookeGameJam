@@ -4,11 +4,18 @@ public class Shooting : MonoBehaviour
 {
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject bulletPrefab;
+    private AudioManager audioManager;
+
     private float bulletForce = 20f;
 
     private float timeBetweenShots = .35f;
 
     private float nextShotTimer = 0.0f;
+
+    private void Awake() 
+    {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+    }
 
     private void Update()
     {
@@ -18,7 +25,7 @@ public class Shooting : MonoBehaviour
 
     private void Shoot()
     {
-        FindObjectOfType<AudioManager>().Play("GunSound");
+        audioManager.Play("GunSound");
         nextShotTimer = Time.time + timeBetweenShots;
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
