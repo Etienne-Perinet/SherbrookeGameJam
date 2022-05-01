@@ -1,31 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private GameObject bulletPrefab;
+    private AudioManager audioManager;
 
-    public Transform firePoint;
-    public GameObject bulletPrefab;
+    private float bulletForce = 20f;
 
-    public float bulletForce = 20f;
+    private float timeBetweenShots = .35f;
 
-    void Update()
+    private float nextShotTimer = 0.0f;
+
+    private void Awake() 
     {
-        if(Input.GetButtonDown("Fire1"))
-        {
-            Shoot();
-        }
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
-    void Shoot()
+    private void Update()
     {
-        if(gameObject.GetComponent<AudioSource>() == null)
-        {
-            FindObjectOfType<AudioManager>().AttributeAudioSource("GunSound", gameObject.AddComponent<AudioSource>());
-            FindObjectOfType<AudioManager>().AttributeAudioSource("DamageSound", gameObject.AddComponent<AudioSource>());
-        }
-        FindObjectOfType<AudioManager>().Play("GunSound");
+        if (Input.GetButtonDown("Fire1") || (Time.time > nextShotTimer && Input.GetButton("Fire1")))
+            Shoot();
+    }
+
+    private void Shoot()
+    {
+        audioManager.Play("GunSound");
+        nextShotTimer = Time.time + timeBetweenShots;
+
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
